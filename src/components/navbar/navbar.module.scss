@@ -1,0 +1,83 @@
+.menu {
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item h6 {
+    margin: 0;
+    font-weight: 200;
+    text-align: center;
+    padding: 7px;
+    font-size: 1.5rem;
+}
+
+.left {
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+}
+
+.right {
+    align-items: center;
+    padding: 0 7px;
+}
+
+.item {
+    position: relative;
+    display: inline-block;
+}
+
+.item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 7px;
+    height: 2px;
+    width: 0;
+    background-color: #000;
+    transition: width 0.3s ease-in-out; /* Adjust the duration and easing as needed */
+}
+
+.item:hover::after {
+    width: calc(100% - 15px);
+}
+
+.logo {
+    height: 50px;
+}
+
+.logo img {
+    height: 100%;
+    animation-name: rotate;
+    animation-duration: 10s; /* Adjust the duration as desired */
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.logo img:hover {
+    animation-duration: 0.5s; // inifinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(720deg);
+    }
+}
+
+.item {
+    transition: opacity 0.3s ease-in-out; /* Adjust the duration and easing as needed */
+}
+
+.item.fade-out {
+    opacity: 0;
+    // make it fall
+}

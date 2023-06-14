@@ -1,11 +1,10 @@
-import { GiftCard } from './components/gift-card/gift-card';
+import { NavBar } from './components/navbar/navbar';
 import styles from './App.module.scss';
 
 function App() {
     return (
-        <div className={styles.App}>
-            <GiftCard />
-            <GiftCard full />
+        <div>
+            <NavBar text="this will be the menu bar" />
         </div>
     );
 }
