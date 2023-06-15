@@ -11,9 +11,12 @@
   "dependencies": {
     "@blueprintjs/core": "^4.20.1",
     "@blueprintjs/icons": "^4.16.0",
+    "chart.js": "^4.3.0",
     "classnames": "^2.3.2",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.13.0",
     "vite-plugin-svgr": "^3.2.0"
   },
   "devDependencies": {
