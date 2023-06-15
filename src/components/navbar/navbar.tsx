@@ -2,11 +2,7 @@ import { H6 } from '@blueprintjs/core';
 import styles from './navbar.module.scss';
 import { useState } from 'react';
 
-export interface NavBarProps {
-    text?: string;
-}
-
-export const NavBar = ({ text }: NavBarProps) => {
+export const NavBar = () => {
     const [fadeItems, setFadeItems] = useState<string[]>([]);
 
     const handleItemClick = (item: string) => {

@@ -30,6 +30,7 @@
 .item {
     position: relative;
     display: inline-block;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .item::after {
@@ -71,10 +72,6 @@
     100% {
         transform: rotate(720deg);
     }
-}
-
-.item {
-    transition: opacity 0.3s ease-in-out; /* Adjust the duration and easing as needed */
 }
 
 .item.fade-out {

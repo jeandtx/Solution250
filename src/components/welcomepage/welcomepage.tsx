@@ -1,28 +1,52 @@
-import React, { useState, useEffect } from 'react'
-import styles from './welcomepage.module.scss'
-import { NavBar } from '../navbar/navbar'
+import React, { useState } from 'react';
+import styles from './welcomepage.module.scss';
 
 export const WelcomePage = () => {
-    const [clicked, setClicked] = useState(false)
+    const [clicked, setClicked] = useState(false);
+    const [animation, setAnimation] = useState(false);
 
-    return(
+    const handleClick = () => {
+        setAnimation(true);
+        setTimeout(() => {
+            setClicked(true);
+        }, 800);
+    };
+
+    return (
         <div>
-            {
-                !clicked ?
-                <>
-                    <div className={styles.text}>Click on the logo</div>
-                    <div className={styles.container}
-                    onClick={() => setClicked(true)}>
-                        <div className={styles.logoContainer} >
-                            <img className={styles.logo} src="src/assets/logo.png" alt="logo" />
+            {!clicked ? (
+                <div>
+                    <div
+                        className={`${styles.text} ${
+                            animation ? '' : styles.textBreath
+                        }`}
+                    >
+                        Click on the logo
+                    </div>
+                    <div
+                        className={`${styles.container} ${
+                            animation ? styles.fadeAnimation : ''
+                        }`}
+                        onClick={handleClick}
+                    >
+                        <div className={styles.logoContainer}>
+                            <div className={styles.infiniteRotate}>
+                                <img
+                                    className={`${styles.logo} ${
+                                        animation
+                                            ? styles.zoomFadeAnimation
+                                            : ''
+                                    }`}
+                                    src="src/assets/logo.png"
+                                    alt="logo"
+                                />
+                            </div>
                         </div>
                     </div>
-                </>
-
-
-                :
-                <NavBar text="this will be the menu bar" />
-            }
+                </div>
+            ) : (
+                <div className=""></div>
+            )}
         </div>
-    )
-}
+    );
+};
