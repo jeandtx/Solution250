@@ -1,11 +1,11 @@
 import { createBoard } from '@wixc3/react-board';
-import { MyCompenent } from '../../components/navbar/navbar';
+import { IAPrediction } from '../../components/ia-prediction/ia-prediction';
 
 export default createBoard({
     name: 'MyBoard',
     Board: () => (
         <div>
-            <MyCompenent text="this is the nested text of this component" />
+            <IAPrediction />
         </div>
     ),
     environmentProps: {

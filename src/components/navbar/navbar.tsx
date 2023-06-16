@@ -3,11 +3,7 @@ import styles from './navbar.module.scss';
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-export interface NavBarProps {
-    text?: string;
-}
-
-export const NavBar = ({ text }: NavBarProps) => {
+export const NavBar = () => {
     const [fadeItems, setFadeItems] = useState<string[]>([]);
 
     const handleItemClick = (item: string) => {

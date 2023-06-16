@@ -1,0 +1,74 @@
+.homePageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
+
+.pageTitle {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.textInput {
+    position: relative;
+    display: inline-block;
+}
+
+.textInput textarea {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    // huge box shadow to make it look like it's floating
+    box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0.1);
+    resize: none;
+    width: 600px;
+    height: 300px;
+    transition: box-shadow 0.3s ease;
+}
+
+.textInput textarea:focus {
+    outline: none;
+    box-shadow: 0 0 4px 2px rgba(0, 123, 255, 0.3);
+}
+
+.textInput .placeholder {
+    position: absolute;
+    top: 7%;
+    left: 15px;
+    transform: translateY(-50%);
+    font-size: 27px;
+    color: #888;
+    pointer-events: none;
+    transition: top 0.3s ease, font-size 0.3s ease;
+}
+
+.textInput .placeholder.active {
+    top: -10px;
+    font-size: 12px;
+    color: #aaa;
+}
+
+.submitButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+    background-color: #0056b3;
+}
