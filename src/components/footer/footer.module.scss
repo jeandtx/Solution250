@@ -1,0 +1,63 @@
+.footer{
+height: 353px;
+bottom: 0px;
+background-color: #482664;
+}
+
+.copyright{
+    // centrer la div au milieu de la page
+    margin: 0 auto;
+    width: 50%;
+}
+
+.copyright p{
+    // centrer le text
+    text-align: center;
+    font-family: 'Public Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 160%;
+}
+
+.logo{
+    // reduire la taille du logo
+    height: 100px;
+    // decaler le logo vers la droite
+    padding-left: 10%; 
+    position: absolute;
+}
+
+.left{
+    // aligner les div horizontalement
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 130px;
+
+}
+
+
+.social{
+    height: 30px;
+}
+
+.left p{
+    color: #FFFFFF;
+         
+}
+
+.item{
+    // mettre la div au milieu de la page;
+    margin: 0 auto;
+
+    // aligner les div horizontalement
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // mettre la div item au milieu de la page
+    width: 30%;
+    // reduuire l'espace entre les items de la div
+    // decaler à gauche
+
+}
