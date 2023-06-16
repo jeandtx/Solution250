@@ -2,30 +2,15 @@ import { NavBar } from './components/navbar/navbar';
 import styles from './App.module.scss';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Home } from './screens/home/home';
+import { Plans } from './screens/plans/plans';
+import { About } from './screens/about/about';
+import { Login } from './screens/login/login';
   
 
-function Plans() {
-  return (
-      <div className={styles.about}>
-          <h1>Plans</h1>
-      </div>
-  );
-}
 
-function About() {
-    return (
-        <div className={styles.about}>
-            <h1>About</h1>
-        </div>
-    );
-}
-function Login() {
-    return (
-        <div className={styles.about}>
-            <h1>Login</h1>
-        </div>
-    );
-}
+
+
+
 
 
 function App() {
