@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styles from './welcomepage.module.scss';
+import { NavBar } from '../navbar/navbar';
+import { TextInput } from '../text-input/text-input';
 
 export const WelcomePage = () => {
     const [clicked, setClicked] = useState(false);
@@ -45,7 +47,10 @@ export const WelcomePage = () => {
                     </div>
                 </div>
             ) : (
-                <div className=""></div>
+                <>
+                    <NavBar />
+                    <TextInput />
+                </>
             )}
         </div>
     );
