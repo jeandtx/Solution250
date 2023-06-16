@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './welcomepage.module.scss';
 import { NavBar } from '../navbar/navbar';
 import { TextInput } from '../text-input/text-input';
+import  App  from '../../App';
 
 export const WelcomePage = () => {
     const [clicked, setClicked] = useState(false);
@@ -12,6 +13,12 @@ export const WelcomePage = () => {
         setTimeout(() => {
             setClicked(true);
         }, 800);
+        // route to home page using router
+        
+        
+
+
+        // TODO : Navigate to the homepage and remove conditional rendering
     };
 
     return (
@@ -48,8 +55,7 @@ export const WelcomePage = () => {
                 </div>
             ) : (
                 <>
-                    <NavBar />
-                    <TextInput />
+                    <App />
                 </>
             )}
         </div>
