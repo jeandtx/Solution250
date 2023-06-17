@@ -14,21 +14,21 @@ export const Footer = () => {
                     </div>
                     <div className={styles.item}>
                     <div className={styles.item1}>
-                        <p>product</p><br/>
-                        <p>pricing</p><br/>
-                        <p>learn more</p>
+                        <p><a href="/product">Product</a></p><br/>
+                        <p><a href="/pricing">Pricing</a></p><br/>
+                        <p><a href="/learn-more">Learn more</a></p>
                     </div>
                     <div className={styles.item2}>
-                        <p>contact us</p><br/>
+                        <p><a href="/contact">Contact us</a></p><br/>
                         <div className={styles.social}>
                             <img src="src/assets/facebook.png" alt="facebook" className={styles.social} />
-                            <img src="src/assets/twitter.png" alt="twitter" className={styles.social} />
+                            <img src="src/assets/twitter.png" alt="twitter" className={styles.socialtwitter} />
                             <img src="src/assets/instagram.png" alt="instagram" className={styles.social} />
                         </div>  
                     </div>
                     <div className={styles.item3}>
-                        <p>privacy policy</p><br/>
-                        <p>term of use</p>
+                        <p><a href="/privacy-policy">Privacy policy</a></p><br/>
+                        <p><a href="/terms-of-use">Terms of use</a></p>
                     </div>
                     </div>
                     

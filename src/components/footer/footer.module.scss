@@ -22,7 +22,7 @@ background-color: #482664;
 
 .logo{
     // reduire la taille du logo
-    height: 100px;
+    height: 120px;
     // decaler le logo vers la droite
     padding-left: 10%; 
     position: absolute;
@@ -60,4 +60,20 @@ background-color: #482664;
     // reduuire l'espace entre les items de la div
     // decaler à gauche
 
+}
+
+
+
+.socialtwitter {
+    height: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.item a{
+    // desactiver tous les effets
+    text-decoration: none;
+    color: #FFFFFF  ;
+    // text size 18px
+    font-size: 18px;
 }
