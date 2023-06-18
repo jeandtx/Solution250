@@ -34,7 +34,8 @@ export const IAPrediction = ({ pathToModel }: FormCardProps) => {
             const input = tensor2d(padded_int_array, [1, 500]); // Use tf.tensor2d for a 2D tensor
             const prediction = model.predict(input);
             // ! What is the prediction object ???
-            console.log(prediction);
+            console.log(prediction.arraySync()[0][0]);
+            // https://medium.com/@andrew.w.sale/deploying-text-classification-from-keras-to-tensorflow-js-92c614dca4ec
         };
 
         const runPrediction = async () => {
