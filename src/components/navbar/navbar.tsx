@@ -10,7 +10,7 @@ export const NavBar = () => {
         setFadeItems([...fadeItems, item]);
         setTimeout(() => {
             setFadeItems(fadeItems.filter((i) => i !== item));
-        }, 500); // Adjust the delay to match the transition duration in milliseconds
+        }, 250); // Adjust the delay to match the transition duration in milliseconds
     };
 
     return (
