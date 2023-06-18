@@ -1,0 +1,14 @@
+.titleContainer {
+    justify-content: center;
+    display: grid;
+    grid-template-rows: auto 1fr 1fr;
+    padding-top: 2rem;
+}
+
+.cardContainer {
+    padding-top: 2rem;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
