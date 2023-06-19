@@ -42,15 +42,26 @@ export const IAPrediction = ({ pathToModel }: FormCardProps) => {
             .concat(Array(500 - text_array.length).fill('<UNKNOWN_WORD>'));
 
         const padded_int_array = new Array(500).fill(0);
+
+        let tokenizer: any = await import(
+            '../../assets/polarity/tokenizer.json'
+        );
+
+        tokenizer = tokenizer.default;
+        console.log('Tokenizer loaded')
+        const tokenizer_keys = Object.keys(tokenizer);
+        const tokenizer_words = tokenizer_keys.map((key) => tokenizer[key]);
+        console.log(tokenizer_words.slice(0, 10));
+        console.log(tokenizer_keys.slice(0, 10));
+
         for (let i = 0; i < padded_text_array.length; i++) {
             const token = padded_text_array[i];
             try {
-                const tokenizer: any = await import(
-                    '../../assets/polarity/tokenizer.json'
-                );
                 if (tokenizer[token]) {
+                    console.log('Token found')
                     padded_int_array[i] = tokenizer[token];
                 } else {
+                    console.log('Token not found')
                     padded_int_array[i] = tokenizer['<UNKNOWN_WORD>'];
                 }
             } catch (error) {
