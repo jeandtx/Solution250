@@ -17,24 +17,6 @@ export const IAPrediction = ({ pathToModel }: FormCardProps) => {
         return model;
     };
 
-    const tokenize = async (word: string) => {
-        try {
-            const tokenizer: any = await import(
-                '../../assets/polarity/tokenizer.json'
-            );
-            console.log(tokenizer[word]);
-            if (tokenizer[word]) {
-                return tokenizer[word];
-            } else {
-                return tokenizer['<UNKNOWN_WORD>'];
-            }
-        } catch (error) {
-            // Handle any errors that occurred during fetching or importing
-            console.error('Error occurred while tokenizing:', error);
-            throw error;
-        }
-    };
-
     const predict = async (text: string, model: any) => {
         const text_array = text.split(' ');
         const padded_text_array = text_array
@@ -48,20 +30,18 @@ export const IAPrediction = ({ pathToModel }: FormCardProps) => {
         );
 
         tokenizer = tokenizer.default;
-        console.log('Tokenizer loaded')
+        console.log('Tokenizer loaded');
         const tokenizer_keys = Object.keys(tokenizer);
         const tokenizer_words = tokenizer_keys.map((key) => tokenizer[key]);
         console.log(tokenizer_words.slice(0, 10));
-        console.log(tokenizer_keys.slice(0, 10));
+        console.log(tokenizer_words.indexOf('love') + 1);
 
         for (let i = 0; i < padded_text_array.length; i++) {
             const token = padded_text_array[i];
             try {
-                if (tokenizer[token]) {
-                    console.log('Token found')
-                    padded_int_array[i] = tokenizer[token];
+                if (tokenizer_words.indexOf(token)) {
+                    padded_int_array[i] = tokenizer_words.indexOf(token) + 1;
                 } else {
-                    console.log('Token not found')
                     padded_int_array[i] = tokenizer['<UNKNOWN_WORD>'];
                 }
             } catch (error) {
