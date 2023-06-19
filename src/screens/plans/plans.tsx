@@ -1,5 +1,4 @@
 import styles from './plans.module.scss';
-import React from 'react';
 import { PriceCard } from '../../components/price-card/price-card';
 import { MainPriceCard } from '../../components/main-price-card/main-price-card';
 
