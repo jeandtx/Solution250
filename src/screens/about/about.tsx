@@ -1,10 +1,7 @@
 import styles from '../App.module.scss';
+import { AboutUs} from '../../components/about-us/about-us';
 
 export function About() {
-    return (
-        <div >
-            <h1>About</h1>
-        </div>
-    );
+    return (<AboutUs/>);
 }
 
