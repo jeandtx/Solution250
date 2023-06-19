@@ -1,7 +1,8 @@
 import { H6 } from '@blueprintjs/core';
 import styles from './footer.module.scss';
 import { useState } from 'react';
-
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+    
 export const Footer = () => {
     
 
@@ -14,27 +15,39 @@ export const Footer = () => {
                     </div>
                     <div className={styles.item}>
                     <div className={styles.item1}>
-                        <p><a href="/product">Product</a></p><br/>
-                        <p><a href="/pricing">Pricing</a></p><br/>
-                        <p><a href="/learn-more">Learn more</a></p>
+                    <Link to="/" className="nav-link">
+                        <p>Product</p><br/>
+                    </Link>
+                    <Link to="/plans" className="nav-link">
+                        <p>Pricing</p><br/>
+                    </Link>
+                    <Link to="/about" className="nav-link">
+                        <p>Learn more</p>
+                    </Link>
                     </div>
                     <div className={styles.item2}>
-                        <p><a href="/contact">Contact us</a></p><br/>
+                    <Link to="/contact" className="nav-link">
+                        <p>Contact us</p><br/>
+                    </Link> 
                         <div className={styles.social}>
-                            <img src="src/assets/facebook.png" alt="facebook" className={styles.social} />
-                            <img src="src/assets/twitter.png" alt="twitter" className={styles.socialtwitter} />
-                            <img src="src/assets/instagram.png" alt="instagram" className={styles.social} />
+                        <a href="https://www.linkedin.com/in/solution250/"><img src="src/assets/linkedin.png" alt="linkedin" className={styles.social} /></a>
+
+                        <a href="https://twitter.com/250Solution"><img src="src/assets/twitter.png" alt="twitter" className={styles.socialtwitter} /></a>
+                        
+                        
+                        <a href="https://www.instagram.com/solution250.ig/"><img src="src/assets/instagram.png" alt="instagram" className={styles.social} /></a>
                         </div>  
                     </div>
                     <div className={styles.item3}>
-                        <p><a href="/privacy-policy">Privacy policy</a></p><br/>
-                        <p><a href="/terms-of-use">Terms of use</a></p>
+                        <p>Privacy policy</p><br/>
+                        <p>Terms of use</p>
                     </div>
                     </div>
                     
                 </div>
+                <div className={styles.copyright}><p>© 2023 - ALL RIGHTS RESERVED - Solution 250</p></div>
+
             </footer>
-            <div className={styles.copyright}><p>© 2023 - ALL RIGHTS RESERVED - Solution 250</p></div>
         
         
         </div>
