@@ -5,16 +5,21 @@ import { Bar } from 'react-chartjs-2';
 export const TextInput = () => {
     const [text, setText] = useState('');
     const [showCharts, setShowCharts] = useState(false);
+    const [counter, setCounter] = useState(0);
 
-    const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    const handleTextChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setText(event.target.value);
     };
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
 
         setShowCharts(true);
     };
+
+    useEffect(() => {
+        setCounter(text.length);
+    }, [text]);
 
     useEffect(() => {
         if (showCharts) {
@@ -39,29 +44,23 @@ export const TextInput = () => {
 
     return (
         <div className={styles.homePageContainer}>
-            <h1 className={styles.pageTitle}>
-                Want to try our emotion analysis ?
-            </h1>
+            <div className={styles.titleContainer}>
+                <h1 style={{textAlign:'center'}}>Get started!</h1>
+                <text>Enter your reviews to get the feeling analysis</text>
+            </div>
+        <div>
+
+        </div>
             {showCharts ? (
                 <div className={styles.chartContainer}>
                     {/* <Bar data={{}} options={{}} /> */}
                 </div>
             ) : (
-                <form onSubmit={handleSubmit} className={styles.formContainer}>
-                    <label className={styles.textInput}>
-                        <span
-                            className={`placeholder${
-                                styles.text ? ' active' : ''
-                            }`}
-                        >
-                            Enter your text
-                        </span>
-                        <textarea value={text} onChange={handleChange} />
-                    </label>
-                    <button type="submit" className={styles.submitButton}>
-                        Analyze
-                    </button>
-                </form>
+                <div className={styles.inputContainer}>
+                    <textarea onChange={handleTextChange} maxLength={3000} className={styles.textInput}/>
+                    <text className={styles.counter}>{counter}/3000 characters</text>
+                    <button onClick={handleSubmit} className={styles.button}>Smash to send</button>
+                </div>
             )}
         </div>
     );
