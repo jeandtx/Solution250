@@ -57,8 +57,8 @@ export const TextInput = () => {
                 </div>
             ) : (
                 <div className={styles.inputContainer}>
-                    <textarea onChange={handleTextChange} maxLength={3000} className={styles.textInput}/>
-                    <text className={styles.counter}>{counter}/3000 characters</text>
+                    <textarea onChange={handleTextChange} maxLength={1000} className={styles.textInput}/>
+                    <text className={styles.counter}>{counter}/1000 characters</text>
                     <button onClick={handleSubmit} className={styles.button}>Smash to send</button>
                 </div>
             )}
