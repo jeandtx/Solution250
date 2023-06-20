@@ -32,9 +32,10 @@ export const NavBar = () => {
                 <Link to="/" className="nav-link">
                     <div
                         className={`${styles.item} ${
-                            fadeItems.includes('product') ? styles['fade-out'] : ''
+                            fadeItems.includes('product') ? 
+                            styles['fade-out'] : ''
                         }`}
-                        onClick={() => handleItemClick('logo')}
+                        onClick={() => handleItemClick('product')}
                     >
                         <H6>Product</H6>
                     </div>
