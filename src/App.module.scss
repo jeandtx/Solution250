@@ -1,3 +1,8 @@
 .App {
     background-color: #f5f7f9;
 }
+
+// disable blue rectangle on click
+*:focus {
+    outline: none;
+}
