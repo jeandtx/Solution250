@@ -1,0 +1,48 @@
+.pro {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.button {
+    all: unset;
+    background-color: #ff3d47;
+    width: 33rem;
+    padding: 0.9rem 3.5rem;
+    color: white;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: 0.2s;
+    margin: 2rem;
+    text-align: center;
+    user-select: none;
+}
+
+.button:hover {
+    transform: scale(1.03);
+}
+
+.button:active {
+    transform: scale(0.97);
+}
+
+.textInput {
+    width: 40rem;
+    height: 320px;
+    background-color: white;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: #cac5c5;
+    padding: 20px 20px 40px 20px;
+    resize: none;
+    outline: none;
+    transition: all 0.4s ease;
+}
+
+.textInput:focus {
+    border-color: #ff3d47;
+}

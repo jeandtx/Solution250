@@ -5,6 +5,7 @@ import { Plans } from './screens/plans/plans';
 import { About } from './screens/about/about';
 import { Login } from './screens/login/login';
 import { Footer } from './components/footer/footer';
+import { Professionals } from './screens/pro/pro';
 import styles from './App.module.scss';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
                     <Route path="/plans" element={<Plans />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/pro" element={<Professionals />} />
                 </Routes>
                 <Footer />
             </Router>
