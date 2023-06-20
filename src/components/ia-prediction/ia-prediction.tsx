@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import styles from './ia-prediction.module.scss';
 import { useState } from 'react';
 import { loadLayersModel, tensor2d } from '@tensorflow/tfjs';
+import { TextInput } from '../text-input/text-input';
 
 export interface FormCardProps {
     pathToModel?: string;
@@ -65,6 +66,7 @@ export const IAPrediction = ({
     };
 
     const runPrediction = async () => {
+        console.log('Running prediction' + text);
         const loadedModel = await loadModel(pathToModel);
         const loadedTokenizer = await loadTokenizer(pathToTokenizer);
         predict(text, loadedModel, loadedTokenizer).catch((err) =>
@@ -73,21 +75,13 @@ export const IAPrediction = ({
     };
 
     return (
-        <Card
-            className={classNames(styles.card, styles.wrapper)}
-            elevation={Elevation.FOUR}
-        >
-            <InputGroup
-                type="text"
-                fill
-                round
-                placeholder="Enter a review"
-                id="text"
-                value={text}
-                onChange={(e) => setText(e.target.value)}
+        <div>
+            <TextInput
+                textArg={text}
+                onChanges={setText}
+                predict={runPrediction}
+                output={output}
             />
-            <Button onClick={() => runPrediction()}>Predict</Button>
-            <H1>Output: {output}</H1>
-        </Card>
+        </div>
     );
 };
