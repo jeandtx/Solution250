@@ -8,96 +8,6 @@
 
 .titleContainer {
     justify-content: center;
-<<<<<<< HEAD
-    height: 100vh;
-  }
-  
-  .pageTitle {
-    font-size: 24px;
-    margin-bottom: 20px;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-  }
-  
-  .pageTitle.hide {
-    opacity: 0;
-  }
-  
-  .formContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .textContainer {
-    margin-top: 20px;
-  }
-  
-  .enteredText {
-    font-size: 16px;
-    line-height: 1.5;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 4px;
-    width: 300px;
-    max-height: 200px;
-    overflow: auto;
-  }
-  
-  .textInput {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .textInput textarea {
-    padding: 10px 15px;
-    font-size: 16px;
-    border: none;
-    border-radius: 30px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    resize: none;
-    width: 300px;
-    height: 150px;
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .textInput textarea:focus {
-    outline: none;
-    box-shadow: 0 0 4px 2px rgba(0, 123, 255, 0.3);
-  }
-  
-  .textInput .placeholder {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 16px;
-    color: #888;
-    pointer-events: none;
-    transition: top 0.3s ease, font-size 0.3s ease;
-  }
-  
-  .textInput .placeholder.active {
-    top: -20px;
-    font-size: 12px;
-    color: #aaa;
-  }
-  
-  .submitButton {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .submitButton:hover {
-    background-color: #0056b3;
-  }
-=======
     display: grid;
     grid-template-rows: auto 1fr 1fr;
     margin-top: 3.5rem;
@@ -159,4 +69,3 @@
     right: 4rem;
     bottom: 8.3rem;
 }
->>>>>>> 1dde81e3752c9e74367bd4ac589cb29e36cbf451
