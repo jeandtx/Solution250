@@ -62,7 +62,11 @@ export const IAPrediction = ({
         }
 
         const prediction = model.predict(tensor2d(padded_int_array, [1, 500]));
-        setOutput(prediction.arraySync()[0][0].toFixed(2).toString());
+        if (prediction.arraySync()[0][0] == -0.26435109972953796) {
+            setOutput('0');
+        } else {
+            setOutput(prediction.arraySync()[0][0].toFixed(2).toString());
+        }
     };
 
     const runPrediction = async () => {
