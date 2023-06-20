@@ -2,7 +2,6 @@ import { H6 } from '@blueprintjs/core';
 import styles from './navbar.module.scss';
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import classNames from 'classnames';
 
 export const NavBar = () => {
     const [fadeItems, setFadeItems] = useState<string[]>([]);
@@ -13,7 +12,7 @@ export const NavBar = () => {
             setFadeItems(fadeItems.filter((i) => i !== item));
         }, 250); // Adjust the delay to match the transition duration in milliseconds
     };
-    
+
     return (
         <div className={styles.menu}>
             <div className={styles.left}>
@@ -28,7 +27,7 @@ export const NavBar = () => {
                     </div>
                 </Link>
             </div>
-                <div className={styles.centered}>
+            <div className={styles.centered}>
                 <Link to="/" className="nav-link">
                     <div
                         className={`${styles.item} ${
@@ -65,7 +64,6 @@ export const NavBar = () => {
                     </div>
                 </Link>
             </div>
-            
 
             <div className={styles.right}>
                 <Link to="/login" className="nav-link">
