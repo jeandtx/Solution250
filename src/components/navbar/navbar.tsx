@@ -26,9 +26,22 @@ export const NavBar = () => {
                         <img src="src/assets/logo.png" alt="logo" />
                     </div>
                 </Link>
-                <Link to="/plans" className="nav-link">
+            </div>
+            <div className={styles.centered}>
+                <Link to="/" className="nav-link">
                     <div
                         className={`${styles.item} ${
+                            fadeItems.includes('product') ? 
+                            styles['fade-out'] : ''
+                        }`}
+                        onClick={() => handleItemClick('product')}
+                    >
+                        <H6>Product</H6>
+                    </div>
+                </Link>
+                <Link to="/plans" className="nav-link">
+                    <div
+                        className={`${styles.items} ${
                             fadeItems.includes('plans')
                                 ? styles['fade-out']
                                 : ''

@@ -5,19 +5,22 @@ import { Plans } from './screens/plans/plans';
 import { About } from './screens/about/about';
 import { Login } from './screens/login/login';
 import { Footer } from './components/footer/footer';
+import styles from './App.module.scss';
 
 function App() {
     return (
-        <Router>
-            <NavBar />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/plans" element={<Plans />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/login" element={<Login />} />
-            </Routes>
-            <Footer />
-        </Router>
+        <div className={styles.App}>
+            <Router>
+                <NavBar />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/plans" element={<Plans />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/login" element={<Login />} />
+                </Routes>
+                <Footer />
+            </Router>
+        </div>
     );
 }
 export default App;
