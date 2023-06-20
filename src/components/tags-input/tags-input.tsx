@@ -2,9 +2,10 @@ import { useState } from 'react';
 
 export interface FormCardProps {
     myTags: any;
+    setMyTags: any;
 }
 
-function TagsInput({ myTags }: FormCardProps) {
+function TagsInput({ myTags, setMyTags }: FormCardProps) {
     const [tags, setTags]: any = useState(myTags ?? []);
 
     function handleKeyDown(e: any) {
@@ -12,11 +13,13 @@ function TagsInput({ myTags }: FormCardProps) {
         const value = e.target.value;
         if (!value.trim()) return;
         setTags([...tags, value]);
+        setMyTags([...tags, value]);
         e.target.value = '';
     }
 
     function removeTag(index: any) {
         setTags(tags.filter((el: any, i: any) => i !== index));
+        setMyTags(tags.filter((el: any, i: any) => i !== index));
     }
 
     return (
