@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import styles from './text-input.module.scss';
-import { Bar } from 'react-chartjs-2';
+import { Stars } from '../stars/stars';
 
 export interface FormCardProps {
     textArg?: any;
@@ -34,48 +34,27 @@ export const TextInput = ({
         setCounter(text.length);
     }, [text]);
 
-    useEffect(() => {
-        if (showCharts) {
-            const data = Array.from({ length: 5 }, () =>
-                Math.floor(Math.random() * 10)
-            );
-
-            const options = {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                    },
-                },
-            };
-
-            setTimeout(() => {
-                setShowCharts(true);
-            }, 1000);
-        }
-    }, [showCharts]);
-
     return (
         <div className={styles.homePageContainer}>
-            <div className={styles.titleContainer}>
-                <h1 style={{ textAlign: 'center' }}>Get started!</h1>
-                <text>Enter your reviews to get the feeling analysis</text>
-                <div>{output}</div>
-            </div>
             {showCharts ? (
                 <div className={styles.chartContainer}>
-                    {/* <Bar data={{}} options={{}} /> */}
+                    
+                    <Stars rating={parseFloat(output)} review={text} />
                 </div>
             ) : (
                 <div className={styles.inputContainer}>
+                    <div className={styles.titleContainer}>
+                        <h1 style={{ textAlign: 'center' }}>Get started!</h1>
+                        <p>Enter your reviews to get the feeling analysis</p>
+                    </div>
                     <textarea
                         onChange={handleTextChange}
                         maxLength={1000}
                         className={styles.textInput}
                     />
-                    <text className={styles.counter}>
+                    <p className={styles.counter}>
                         {counter}/1000 characters
-                    </text>
+                    </p>
                     <button onClick={handleSubmit} className={styles.button}>
                         Smash to send
                     </button>

@@ -1,0 +1,115 @@
+.title {
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    color: #000000;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.menu p {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 30px;
+    color: #504F4F;
+    text-align: center;
+}
+
+.result {
+    margin-top: 100px;
+}
+
+.result h2 {
+    font-style: italic;
+    font-family: 'Lexend Deca';
+    color: #504F4F;
+    text-align: center;
+}
+
+.result div {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.result p {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.result img {
+    width: 70px;
+    height: 70px;
+    margin: 0 5px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-top: 70px;
+}
+
+.button1 {
+    margin-right: 100px;
+    box-sizing: border-box;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    background: #FFFFFF;
+    border: 3px solid #FF3D47;
+    border-radius: 15px;
+    width: 400px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button1:hover {
+    transform: scale(1.05);
+}
+
+.button1:active {
+    transform: scale(0.95);
+    box-shadow: none;
+}
+
+.button1 h1 {
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 25px;
+    color: #FF3D47;
+}
+
+.button2 {
+    margin-left: 50px;
+    background: #FF3D47;
+    border-radius: 15px;
+    border: 3px solid #FF3D47;
+    width: 400px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button2:hover {
+    transform: scale(1.05);
+}
+
+.button2:active {
+    transform: scale(0.95);
+    box-shadow: none;
+}
+
+.button2 h1 {
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 25px;
+    color: #FFFFFF;
+}
