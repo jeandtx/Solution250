@@ -16,7 +16,7 @@ export const MainPriceCard = ({type, price, options, placeholder } : MainPriceCa
             <div className={styles.type}>{type}</div>
             <div className={styles.priceContainer}>
                 <div className={styles.price}>{price}</div>
-                <div>/month</div>
+                <div style={{userSelect:'none'}}>/month</div>
             </div>
             <div className={styles.optionContainer}>
                 {options?.map((option, index) => {

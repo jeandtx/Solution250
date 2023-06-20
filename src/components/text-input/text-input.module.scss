@@ -2,7 +2,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100vh;
+    background-color: #f5f7f9;
+}
+
+.titleContainer {
     justify-content: center;
+<<<<<<< HEAD
     height: 100vh;
   }
   
@@ -91,3 +97,66 @@
   .submitButton:hover {
     background-color: #0056b3;
   }
+=======
+    display: grid;
+    grid-template-rows: auto 1fr 1fr;
+    margin-top: 3.5rem;
+    margin-bottom: 4rem;
+    user-select: none;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.textInput {
+    width: 40rem;
+    height: 320px;
+    background-color: white;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: #cac5c5;
+    padding: 20px 20px 40px 20px;
+    resize:none;
+    outline:none;
+    transition: all 0.4s ease;
+}
+
+.textInput:focus {
+    border-color: #ff3d47;
+}
+
+.button {
+    all: unset;
+    background-color: #ff3d47;
+    width: 33rem;
+    padding: 0.9rem 3.5rem;
+    color: white;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: 0.2s;
+    margin: 2rem;
+    text-align: center;
+    user-select: none;
+}
+
+.button:hover {
+    transform: scale(1.03);
+}
+
+.button:active {
+    transform: scale(0.97);
+}
+
+.counter {
+    position:absolute;
+    right: 4rem;
+    bottom: 8.3rem;
+}
+>>>>>>> 1dde81e3752c9e74367bd4ac589cb29e36cbf451
