@@ -2,6 +2,15 @@ import React from 'react';
 import styles from './scrapping.module.scss';
 import axios from 'axios';
 
+const ExtractASIN = (text: string) => {
+    let ASINreg = new RegExp(/(?:\/)([A-Z0-9]{10})(?:$|\/|\?)/);
+    let cMatch = RegExp(ASINreg).exec(text);
+    if (cMatch == null) {
+        console.log('No ASIN found');
+        return null;
+    }
+    return cMatch[1];
+};
 export const Scrapping: React.FC = () => {
     const [text, setText] = React.useState('');
 
@@ -10,7 +19,7 @@ export const Scrapping: React.FC = () => {
             api_key: 'D2132ABBBBF04A878B19738F53749EED',
             amazon_domain: 'amazon.com',
             type: 'reviews',
-            asin: text,
+            asin: ExtractASIN(text),
         };
 
         axios
@@ -24,7 +33,6 @@ export const Scrapping: React.FC = () => {
                 setText(out.join('\n'));
             })
             .catch((error: any) => {
-                // catch and print the error
                 console.log(error);
             });
     };
