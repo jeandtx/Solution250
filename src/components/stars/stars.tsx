@@ -7,11 +7,12 @@ import yellowStar from '../../assets/yellowstar.png';
 import greyStar from '../../assets/greystar.png';
 
 export interface StarsProps {
-  rating: number;
-  review: string;
+    rating: number;
+    review: string;
+    back: any; 
 }
 
-export const Stars = ({ rating, review }: StarsProps) => {
+export const Stars = ({ rating, review, back }: StarsProps) => {
     const convertToStars = (rating: number) => {
         const adjustedRating = (rating + 1) / 2;
         const convertedRating = adjustedRating * 5;
@@ -36,7 +37,7 @@ export const Stars = ({ rating, review }: StarsProps) => {
     const { stars, fullStars } = convertToStars(rating);
 
     const reloadPage = () => {
-        window.location.reload(); // Recharge la page
+        back(false); // Cache le graphique
     };
 
     const navigateToDetailedReview = () => {
