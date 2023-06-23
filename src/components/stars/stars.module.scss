@@ -113,3 +113,43 @@
     line-height: 25px;
     color: #FFFFFF;
 }
+
+
+.loading {
+    width: 100%;
+    height: 10px;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .loading:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #25338D;
+    animation: loadingAnimation 2s infinite ease-in-out;
+  }
+  
+  @keyframes loadingAnimation {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+  
+  .error p  {
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem; /* Augmenter la taille de police */
+    line-height: 30px;
+    color: #02A3CF;
+    text-align: center;
+  }
