@@ -36,7 +36,9 @@ export const IAPrediction = ({
     };
 
     const predict = async (text: string, model: any, tokenizer: any) => {
-        const text_array = text.split(' ');
+        const lowercaseText = text.toLowerCase(); // Convert the text to lowercase
+
+        const text_array = lowercaseText.split(' ');
         const padded_text_array = text_array
             .slice(0, 500)
             .concat(Array(500 - text_array.length).fill('<UNKNOWN_WORD>'));
