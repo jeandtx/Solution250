@@ -37,9 +37,8 @@ export const TextInput = ({
     return (
         <div className={styles.homePageContainer}>
             {showCharts ? (
-                <div className={styles.chartContainer}>
-                    
-                    <Stars rating={parseFloat(output)} review={text} />
+                <div className={styles.chartContainer}>              
+                    <Stars rating={parseFloat(output)} review={text} back={setShowCharts}/>
                 </div>
             ) : (
                 <div className={styles.inputContainer}>

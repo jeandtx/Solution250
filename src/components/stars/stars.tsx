@@ -9,28 +9,28 @@ import greyStar from '../../assets/greystar.png';
 export interface StarsProps {
   rating: number;
   review: string;
+  back: any;
 }
 
-export const Stars = ({ rating, review }: StarsProps) => {
+export const Stars = ({ rating, review, back }: StarsProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const handleAnalysis = () => {
+      // Simulating async analysis
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+    };
+
     handleAnalysis();
   }, []);
-
-  const handleAnalysis = () => {
-    // Simulating async analysis
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  };
 
   const convertToStars = (rating: number) => {
     const adjustedRating = (rating + 1) / 2;
     const convertedRating = adjustedRating * 5;
     const roundedRating = Math.round(convertedRating);
 
-    const starsCount = 5;
     const fullStars = Math.floor(roundedRating);
 
     const stars = [];
@@ -48,20 +48,26 @@ export const Stars = ({ rating, review }: StarsProps) => {
 
   let content;
   if (review.trim() === '' || rating === -0.26) {
-    content = <div className={styles.error}><p>Invalid review. Please provide a valid review for analysis.</p></div>;
+    content = (
+      <div className={styles.error}>
+        <p>Invalid review. Please provide a valid review for analysis.</p>
+      </div>
+    );
   } else {
     const { stars, fullStars } = convertToStars(rating);
     content = (
       <>
         <h2>"{review}"</h2>
-        <p>{fullStars}/{stars.length}</p>
+        <p>
+          {fullStars}/{stars.length}
+        </p>
         <div>{stars}</div>
       </>
     );
   }
 
   const reloadPage = () => {
-    window.location.reload();
+    back(false); // Cache le graphique
   };
 
   const navigateToDetailedReview = () => {
