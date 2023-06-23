@@ -23,22 +23,46 @@
     position: relative;
 }
 
-.textInput {
-    width: 40rem;
-    height: 320px;
+.textContainer {
+    width: 41rem;
+    height: 250px;
     background-color: white;
     border-style: solid;
     border-radius: 10px;
     border-width: 1px;
     border-color: #cac5c5;
-    padding: 20px 20px 40px 20px;
-    resize:none;
-    outline:none;
-    transition: all 0.4s ease;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.2s;
 }
 
-.textInput:focus {
+.textFocus {
     border-color: #ff3d47;
+    transition: 0.4s;
+}
+
+.textInput {
+    width: 38rem;
+    height: 150px;
+    border-style: none;
+    resize:none;
+    outline:none;
+    overflow-y: hidden;
+    padding-bottom: 1rem;
+    text-align: justify;
+    word-wrap: break-word;
+}
+
+.line {
+    height: 1px;
+    width: 38rem;
+    background-color: #cac5c5;
+}
+
+.optionsContainer {
+    margin-top: 3.5rem;
 }
 
 .button {
@@ -68,4 +92,31 @@
     position:absolute;
     right: 4rem;
     bottom: 8.3rem;
+}
+
+.fileContainer {
+    position: absolute;
+    left: 4rem;
+    bottom: 8.3rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+    padding: 1.3rem 1rem;
+}
+
+.fileContainer:hover {
+    transform: scale(1.3);
+    background-color: #ff3d47;
+    border-radius: 100px;
+}
+
+input[type="file"] {
+    position: absolute;
+    width:50px;
+    height:50px;
+    left: 0;
+    top: 0;
+    opacity: 0;
 }
