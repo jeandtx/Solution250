@@ -36,11 +36,11 @@ export const Stars = ({ rating, review, back }: StarsProps) => {
     const stars = [];
 
     for (let i = 0; i < fullStars; i++) {
-      stars.push(<img key={i} src={yellowStar} alt="Yellow Star" />);
+      stars.push(<img key={i} className={`${styles.star}`} src={yellowStar} alt="Yellow Star" style={{animationDelay: `${i * 0.2}s`}} />);
     }
 
     for (let i = 0; i < 5 - fullStars; i++) {
-      stars.push(<img key={fullStars + i + 1} src={greyStar} alt="Grey Star" />);
+      stars.push(<img key={fullStars + i + 1} className={`${styles.star}`} src={greyStar} alt="Grey Star" style={{animationDelay: `${(fullStars + i) * 0.2}s`}} />);
     }
 
     return { stars, fullStars };
