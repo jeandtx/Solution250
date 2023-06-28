@@ -52,7 +52,7 @@
 }
 
 .button1 {
-    margin-right: 100px;
+    margin-right: 60px;
     box-sizing: border-box;
     left: 0%;
     right: 0%;
@@ -61,7 +61,7 @@
     background: #FFFFFF;
     border: 3px solid #FF3D47;
     border-radius: 15px;
-    width: 400px;
+    width: 270px;
     text-align: center;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -80,17 +80,17 @@
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 15px;
     line-height: 25px;
     color: #FF3D47;
 }
 
 .button2 {
-    margin-left: 50px;
+    margin-left: 20px;
     background: #FF3D47;
     border-radius: 15px;
     border: 3px solid #FF3D47;
-    width: 400px;
+    width: 270px;
     text-align: center;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -109,7 +109,7 @@
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 15px;
     line-height: 25px;
     color: #FFFFFF;
 }
