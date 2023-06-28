@@ -10,67 +10,6 @@ export interface FormCardProps {
     output?: any;
 }
 
-async function getLabels(data: any) {
-    const response = await fetch(
-        // 'https://api-inference.huggingface.co/models/facebook/bart-large-mnli',
-        'https://api-inference.huggingface.co/models/MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli',
-        {
-            headers: {
-                Authorization: 'Bearer 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',
-            },
-            method: 'POST',
-            body: JSON.stringify(data),
-        }
-    );
-    const result = await response.json();
-    return result;
-}
-
-async function getEmotion(data: any) {
-    const response = await fetch(
-        'https://api-inference.huggingface.co/models/SamLowe/roberta-base-go_emotions',
-        {
-            headers: {
-                Authorization: 'Bearer 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',
-            },
-            method: 'POST',
-            body: JSON.stringify(data),
-        }
-    );
-    const result = await response.json();
-    return result;
-}
-
-async function getResume(data: any) {
-    const response = await fetch(
-        'https://api-inference.huggingface.co/models/facebook/bart-large-cnn',
-        {
-            headers: {
-                Authorization: 'Bearer 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',
-            },
-            method: 'POST',
-            body: JSON.stringify(data),
-        }
-    );
-    const result = await response.json();
-    return result;
-}
-
-async function getImage(data: any) {
-    const response = await fetch(
-        'https://api-inference.huggingface.co/models/runwayml/stable-diffusion-v1-5',
-        {
-            headers: {
-                Authorization: 'Bearer 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',
-            },
-            method: 'POST',
-            body: JSON.stringify(data),
-        }
-    );
-    const result = await response.blob();
-    return result;
-}
-
 export const TextInput = ({
     textArg,
     onChanges,
@@ -90,10 +29,6 @@ export const TextInput = ({
         'clean',
         'dirty',
     ]);
-    const [outputLabel, setOutputLabel] = React.useState('');
-    const [outputEmotion, setOutputEmotion] = React.useState('');
-    const [outputResume, setOutputResume] = React.useState('');
-    const [outputImage, setOutputImage] = React.useState();
     const textContainerRef = React.useRef<any>(null);
     const textAreaRef = React.useRef<any>(null);
 
@@ -126,31 +61,6 @@ export const TextInput = ({
         }
     };
 
-    const fetchAll = async () => {
-        getLabels({
-            inputs: text,
-            parameters: { candidate_labels: labels },
-        }).then((response) => {
-            setOutputLabel(JSON.stringify(response));
-        });
-
-        getEmotion({ inputs: text }).then((response) => {
-            setOutputEmotion(JSON.stringify(response));
-        });
-
-        getResume({
-            inputs: text,
-        }).then((response) => {
-            setOutputResume(JSON.stringify(response));
-        });
-
-        getImage({ inputs: text }).then((response: any) => {
-            const url: any = URL.createObjectURL(response);
-            setOutputImage(url);
-        });
-        console.log('fetchAll');
-    };
-
     useEffect(() => {
         setCounter(text.length);
     }, [text]);
@@ -163,6 +73,8 @@ export const TextInput = ({
                         rating={parseFloat(output)}
                         review={text}
                         back={setShowCharts}
+                        text={text}
+                        labels={labels}
                     />
                 </div>
             ) : (
