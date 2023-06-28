@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from './tags-input.module.scss';
 
 export interface FormCardProps {
     myTags: any;
@@ -23,21 +24,26 @@ function TagsInput({ myTags, setMyTags }: FormCardProps) {
     }
 
     return (
-        <div className="tags-input-container">
-            {tags.map((tag: any, index: any) => (
-                <div className="tag-item" key={index}>
-                    <span className="text">{tag}</span>
-                    <span className="close" onClick={() => removeTag(index)}>
-                        &times;
-                    </span>
-                </div>
-            ))}
+        <div className={styles.tagContainer}>
             <input
                 onKeyDown={handleKeyDown}
                 type="text"
-                className="tags-input"
-                placeholder="Type somthing"
-            />
+                className={styles.tagsInput}
+                placeholder="Add a tag..."
+            >
+                
+            </input>
+            <div className={styles.mapContainer}>
+                {tags.map((tag: any, index: any) => (
+                    <div className={styles.tagCard} key={index}>
+                        <span className={styles.tagText}>{tag}</span>
+                        <span className={styles.close} onClick={() => removeTag(index)}>
+                            &times;
+                        </span>
+                    </div>
+                ))}
+            </div>
+
         </div>
     );
 }

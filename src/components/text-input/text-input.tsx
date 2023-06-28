@@ -31,6 +31,7 @@ export const TextInput = ({
     ]);
     const textContainerRef = React.useRef<any>(null);
     const textAreaRef = React.useRef<any>(null);
+    const isPro = true;
 
     const handleTextChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setText(event.target.value);
@@ -47,15 +48,16 @@ export const TextInput = ({
     const updateTextContainerHeight = () => {
         const textContainer = textContainerRef.current;
         const textArea = textAreaRef.current;
+        console.log(textArea.scrollHeight)
         if (textContainer && textArea) {
-            if (textArea.scrollHeight > 150) {
+            if (textArea.scrollHeight > 52) {
                 textContainer.style.height = 'auto';
                 textArea.style.height = 'auto';
                 const textAreaHeight = textArea.scrollHeight;
-                textContainer.style.height = `${textAreaHeight + 100}px`;
+                textContainer.style.height = `${textAreaHeight+100}px`;
                 textArea.style.height = `${textAreaHeight}px`;
             } else {
-                textContainer.style.height = '250px';
+                textContainer.style.height = '150px';
                 textArea.style.height = '150px';
             }
         }
@@ -78,53 +80,59 @@ export const TextInput = ({
                     />
                 </div>
             ) : (
-                <div className={styles.inputContainer}>
-                    <div className={styles.titleContainer}>
-                        <h1 style={{ textAlign: 'center' }}>Get started!</h1>
-                        <p>Enter your reviews to get the feeling analysis</p>
-                    </div>
-                    <div
-                        ref={textContainerRef}
-                        className={`${styles.textContainer} ${
-                            focusArea ? styles.textFocus : ''
-                        }`}
-                    >
-                        <textarea
-                            ref={textAreaRef}
-                            onChange={handleTextChange}
-                            maxLength={3000}
-                            className={styles.textInput}
-                            onFocus={() => setFocusArea(true)}
-                            onBlur={() => setFocusArea(false)}
-                            onInput={updateTextContainerHeight}
-                        />
-                        <div className={styles.line}></div>
-                        <div className={styles.optionsContainer}>
-                            <p className={styles.counter}>
-                                {counter}/3000 characters
-                            </p>
-                            <div
-                                className={styles.fileContainer}
-                                onMouseOver={() => setHoverLogo(true)}
-                                onMouseLeave={() => setHoverLogo(false)}
-                            >
-                                <input type="file" />
-                                <i
-                                    className="fa fa-upload"
-                                    style={
-                                        hoverLogo
-                                            ? { color: 'white' }
-                                            : { color: 'black' }
-                                    }
-                                ></i>
+                <>
+                    <div className={styles.inputContainer}>
+                        <div className={styles.titleContainer}>
+                            <h1 style={{ textAlign: 'center' }}>Get started!</h1>
+                            <p>Enter your reviews to get the feeling analysis</p>
+                        </div>
+                        { isPro ? (
+                            <TagsInput myTags={labels} setMyTags={setLabels} />
+                        ) : null}
+                        <div
+                            ref={textContainerRef}
+                            className={`${styles.textContainer} ${
+                                focusArea ? styles.textFocus : ''
+                            }`}
+                        > 
+                            <textarea
+                                ref={textAreaRef}
+                                onChange={handleTextChange}
+                                maxLength={3000}
+                                className={styles.textInput}
+                                onFocus={() => setFocusArea(true)}
+                                onBlur={() => setFocusArea(false)}
+                                onInput={updateTextContainerHeight}
+                                placeholder='Enter your review here...'
+                            />
+                            <div className={styles.line}></div>
+                            <div className={styles.optionsContainer}>
+                                <p className={styles.counter}>
+                                    {counter}/3000 characters
+                                </p>
+                                <div
+                                    className={styles.fileContainer}
+                                    onMouseOver={() => setHoverLogo(true)}
+                                    onMouseLeave={() => setHoverLogo(false)}
+                                >
+                                    <input type="file" />
+                                    <i
+                                        className="fa fa-upload"
+                                        style={
+                                            hoverLogo
+                                                ? { color: 'white' }
+                                                : { color: 'black' }
+                                        }
+                                    ></i>
+                                </div>
                             </div>
                         </div>
+                        <button onClick={handleSubmit} className={styles.button}>
+                            Smash to send
+                        </button>
                     </div>
-                    <button onClick={handleSubmit} className={styles.button}>
-                        Smash to send
-                    </button>
-                    <TagsInput myTags={labels} setMyTags={setLabels} />
-                </div>
+                </>
+
             )}
         </div>
     );
