@@ -20,7 +20,8 @@ async function getEmotion(data: any) {
 
 async function getLabels(data: any) {
     const response = await fetch(
-        'https://api-inference.huggingface.co/models/facebook/bart-large-mnli',
+        // 'https://api-inference.huggingface.co/models/facebook/bart-large-mnli',
+        'https://api-inference.huggingface.co/models/MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli',
         {
             headers: {
                 Authorization: 'Bearer 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',
@@ -105,7 +106,7 @@ export const Scrapping: React.FC = () => {
                 console.log('Error occurred:', error);
             }
         }
-
+        console.log(result);
         const transformed_result = Object.values(result).map((item: any) => {
             const review = item.review;
             const firstSentiment = item.emotion[0][0].label;
@@ -119,7 +120,7 @@ export const Scrapping: React.FC = () => {
 
     return (
         <div>
-            {text == 'result' ? (
+            {text == 'result' && result ? (
                 <div className={styles.pro}>
                     <h1>List of reviews</h1>
                     <button
@@ -165,7 +166,7 @@ export const Scrapping: React.FC = () => {
                         className={styles.button}
                         onClick={() => {
                             setText('result');
-                            scrapp();
+                            analyze(scrapp());
                         }}
                     >
                         Search !
