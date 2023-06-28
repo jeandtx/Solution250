@@ -4,7 +4,8 @@ import TagsInput from '../../components/tags-input/tags-input';
 
 async function getLabels(data: any) {
     const response = await fetch(
-        'https://api-inference.huggingface.co/models/facebook/bart-large-mnli',
+        // 'https://api-inference.huggingface.co/models/facebook/bart-large-mnli',
+        'https://api-inference.huggingface.co/models/MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli',
         {
             headers: {
                 Authorization: 'Bearer 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',
