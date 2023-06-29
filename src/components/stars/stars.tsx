@@ -127,38 +127,37 @@ export const Stars = ({ rating, review, back, text, labels }: StarsProps) => {
     };
 
     let content;
-    if (review.trim() === '' || rating === -0.26435109972953796) {
-        content = (
-            <div className={styles.error}>
-                <p>
-                    Invalid review. Please provide a valid review for analysis.
-                </p>
-            </div>
-        );
-    } else {
-        const { stars, fullStars } = convertToStars(rating);
-        content = (
-            <>
-                <h2>"{review}"</h2>
-                <p>
-                    {fullStars}/{stars.length}
-                </p>
-                <div>{stars}</div>
-            </>
-        );
-        if (pro) {
-            content = (
-                <>
-                    <h2>"{review}"</h2>
-                    <p>
-                        {fullStars}/{stars.length}
-                    </p>
-                    <div>{stars}</div>
-                    <div>This is the pro stats</div>
-                </>
-            );
-        }
+  if (review.trim() === '' || rating === -0.26) {
+    content = (
+      <div className={styles.error}>
+        <p>Invalid review. Please provide a valid review for analysis.</p>
+      </div>
+    );
+  } else {
+    const { stars, fullStars } = convertToStars(rating);
+    console.log(rating)
+    content = (
+      <>
+        <h2>"{review}"</h2>
+        <p>
+          {fullStars}/{stars.length}
+        </p>
+        <div>{stars}</div>
+      </>
+    );
+    if (pro) {
+      content = (
+        <>
+          <h2>"{review}"</h2>
+          <p>
+            {fullStars}/{stars.length}
+          </p>
+          <div>{stars}</div>
+          <div>This is the pro stats</div>
+        </>
+      );
     }
+  }
 
     const reloadPage = () => {
         back(false); // Cache le graphique
@@ -197,41 +196,39 @@ export const Stars = ({ rating, review, back, text, labels }: StarsProps) => {
 
     return (
         <div className={styles.menu}>
-            <div className={styles.title}>
-                <h1>Your analysis</h1>
-            </div>
-            <p>
-                Thank you for using our tools. Here are the results for your
-                analysis:
-            </p>
-
-            <div className={styles.result}>
-                {isLoading ? (
-                    <div className={styles.loading}></div>
-                ) : (
+          <div className={styles.title}>
+            <h1>Your analysis</h1>
+          </div>
+          <p>Thank you for using our tools. Here are the results for your analysis:</p>
+    
+          <div className={styles.result}>
+            {isLoading ? (
+              <div className={styles.loading}></div>
+            ) : (
+              <>
+                {content}
+                <div className={styles.buttons}>
+                  <button onClick={reloadPage} className={styles.button1}>
+                    <h1>Reload Page</h1>
+                  </button>
+                  {!pro && (
                     <>
-                        {content}
-                        <div className={styles.buttons}>
-                            <button
-                                onClick={reloadPage}
-                                className={styles.button1}
-                            >
-                                <h1>Reload Page</h1>
-                            </button>
-                            {!pro && (
-                                <>
-                                    <button
-                                        onClick={navigateToDetailedReview}
-                                        className={styles.button2}
-                                    >
-                                        <h1>Detailed Review</h1>
-                                    </button>
-                                </>
-                            )}
-                        </div>
+                      <button onClick={navigateToDetailedReview} className={styles.button2}>
+                        <h1>Detailed Review</h1>
+                      </button>
                     </>
-                )}
-            </div>
+                  )}
+                </div>
+              </>
+            )}
+          </div>
         </div>
-    );
-};
+      );
+    };
+    
+    
+    
+    
+    
+    
+    
