@@ -39,7 +39,6 @@ export const IAPrediction = ({
     };
 
     const predict = async (text: string, model: any, tokenizer: any) => {
-        console.log("push pipi")
         console.log(lang ? 'lang is true' : 'lang is false')
 
         if (lang) {
