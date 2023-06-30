@@ -1,6 +1,3 @@
-import { Elevation, Card, InputGroup, H1, Button } from '@blueprintjs/core';
-import classNames from 'classnames';
-import styles from './ia-prediction.module.scss';
 import { useState } from 'react';
 import { loadLayersModel, tensor2d } from '@tensorflow/tfjs';
 import { TextInput } from '../text-input/text-input';
@@ -8,13 +5,11 @@ import { TextInput } from '../text-input/text-input';
 export interface FormCardProps {
     pathToModel?: string;
     pathToTokenizer?: string;
-
 }
 
 export const IAPrediction = ({
     pathToModel,
     pathToTokenizer,
-
 }: FormCardProps) => {
     const [text, setText] = useState('');
     const [output, setOutput] = useState('');
@@ -39,11 +34,11 @@ export const IAPrediction = ({
     };
 
     const predict = async (text: string, model: any, tokenizer: any) => {
-        console.log(lang ? 'lang is true' : 'lang is false')
+        console.log(lang ? 'lang is true' : 'lang is false');
 
         if (lang) {
-            const apiKey = "AIzaSyAeuG9j8aQIy74Hmk_VoaB0ik_tgIqILhA";
-            const targetLanguage = "en"; // Langue cible (français dans cet exemple)
+            const apiKey = 'AIzaSyAeuG9j8aQIy74Hmk_VoaB0ik_tgIqILhA';
+            const targetLanguage = 'en'; // Langue cible (français dans cet exemple)
 
             const response = await fetch(
                 `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`,
@@ -61,10 +56,10 @@ export const IAPrediction = ({
 
             const data = await response.json();
             const translatedText = data.data.translations[0].translatedText;
-            console.log("text traduit"+translatedText)
-            text = translatedText
+            console.log('text traduit' + translatedText);
+            text = translatedText;
         }
-        console.log(" predict text is " + text);
+        console.log(' predict text is ' + text);
         const lowercaseText = text.toLowerCase(); // Convert the text to lowercase
 
         const text_array = lowercaseText.split(' ');
@@ -118,7 +113,6 @@ export const IAPrediction = ({
                 output={output}
                 language={setLang}
                 lang={lang}
-
             />
         </div>
     );
