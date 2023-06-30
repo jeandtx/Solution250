@@ -137,12 +137,14 @@ export const TextInput = ({
                                     ></i>
                                     
                                 </div>
+                                <img src={"src\\assets\\en_flag.png"} alt="English flag" height="15" width="22.5" style={{marginTop: "11px", marginLeft: "-16px", position: "absolute"}} />                                
                                 <Switch
                                         checked={lang}
                                         onChange={toggleLang}
                                         name="langSwitch"
                                         inputProps={{ 'aria-label': 'toggle language' }}
                                     />  
+                                <img src={"src\\assets\\fr_flag.png"} alt="English flag" height="15" width="22.5" style={{marginTop: "11px", marginLeft: "-6px", position: "absolute"}} />
                             </div>
                         </div>
                         <button onClick={handleSubmit} className={styles.button}>
