@@ -8,14 +8,17 @@ import { TextInput } from '../text-input/text-input';
 export interface FormCardProps {
     pathToModel?: string;
     pathToTokenizer?: string;
+
 }
 
 export const IAPrediction = ({
     pathToModel,
     pathToTokenizer,
+
 }: FormCardProps) => {
     const [text, setText] = useState('');
     const [output, setOutput] = useState('');
+    const [lang, setLang] = useState(false);
 
     const loadModel = async (path: any) => {
         if (!path) {
@@ -36,6 +39,33 @@ export const IAPrediction = ({
     };
 
     const predict = async (text: string, model: any, tokenizer: any) => {
+        console.log("push pipi")
+        console.log(lang ? 'lang is true' : 'lang is false')
+
+        if (lang) {
+            const apiKey = "AIzaSyAeuG9j8aQIy74Hmk_VoaB0ik_tgIqILhA";
+            const targetLanguage = "en"; // Langue cible (français dans cet exemple)
+
+            const response = await fetch(
+                `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        q: text,
+                        target: targetLanguage,
+                    }),
+                }
+            );
+
+            const data = await response.json();
+            const translatedText = data.data.translations[0].translatedText;
+            console.log("text traduit"+translatedText)
+            text = translatedText
+        }
+        console.log(" predict text is " + text);
         const lowercaseText = text.toLowerCase(); // Convert the text to lowercase
 
         const text_array = lowercaseText.split(' ');
@@ -87,6 +117,9 @@ export const IAPrediction = ({
                 onChanges={setText}
                 predict={runPrediction}
                 output={output}
+                language={setLang}
+                lang={lang}
+
             />
         </div>
     );
