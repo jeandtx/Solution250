@@ -39,6 +39,7 @@ export const TextInput = ({
     const textContainerRef = React.useRef<any>(null);
     const textAreaRef = React.useRef<any>(null);
     const isPro = true;
+    const [CSVcontent, setCSVcontent] = useState<any>(null);
 
     const handleTextChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setText(event.target.value);
@@ -77,6 +78,37 @@ export const TextInput = ({
     const toggleLang = (event: React.ChangeEvent<HTMLInputElement>) => {
         language(event.target.checked);
     };
+
+    function handleFileInput(event: ChangeEvent<HTMLInputElement>): void {
+      const file = event.target.files?.[0];
+      if (file) {
+        const reader = new FileReader();
+    
+        reader.onload = () => {
+          const csvData = reader.result as string;
+          const jsonData = convertCsvToJson(csvData);
+          console.log(jsonData)
+        };
+    
+        reader.readAsText(file);
+      }
+    }
+    
+    function convertCsvToJson(csvData: string): object {
+      const lines = csvData.split('\n');
+    
+      const result: { [key: string]: string } = {};
+      for (let i = 0; i < lines.length; i++) {
+        const currentValue = lines[i].trim(); // Remove leading/trailing whitespace
+    
+        if (currentValue) {
+          result[i.toString()] = currentValue;
+        }
+      }
+    
+      return result;
+    }
+    
 
     return (
         <div className={styles.homePageContainer}>
@@ -126,7 +158,7 @@ export const TextInput = ({
                                     onMouseOver={() => setHoverLogo(true)}
                                     onMouseLeave={() => setHoverLogo(false)}
                                 >
-                                    <input type="file" />
+                                    <input type="file" accept=".csv" onChange={handleFileInput} />
                                     <i
                                         className="fa fa-upload"
                                         style={
