@@ -1,16 +1,16 @@
-.footer{
+.footer {
     margin-top: 50px;
     bottom: 0px;
-background-color: #482664;
+    background-color: #482664;
 }
 
-.copyright{
+.copyright {
     // centrer la div au milieu de la page
     margin: 0 auto;
     width: 50%;
 }
 
-.copyright p{
+.copyright p {
     // centrer le text
     text-align: center;
     font-family: 'Public Sans';
@@ -18,19 +18,19 @@ background-color: #482664;
     font-weight: 400;
     font-size: 14px;
     line-height: 160%;
-    color: #FFFFFF;
+    color: #ffffff;
     padding-bottom: 10px;
 }
 
-.logo{
+.logo {
     // reduire la taille du logo
     height: 120px;
     // decaler le logo vers la droite
-    padding-left: 10%; 
-    position: absolute;
+    padding-left: 10%;
+    position: relative;
 }
 
-.left{
+.left {
     // aligner les div horizontalement
 
     display: flex;
@@ -38,20 +38,17 @@ background-color: #482664;
     align-items: center;
     padding-top: 100px;
     padding-bottom: 100px;
-
 }
 
-
-.social{
+.social {
     height: 30px;
 }
 
-.left p{
-    color: #FFFFFF;
-         
+.left p {
+    color: #ffffff;
 }
 
-.item{
+.item {
     // mettre la div au milieu de la page;
     margin: 0 auto;
 
@@ -64,11 +61,7 @@ background-color: #482664;
     // reduuire l'espace entre les items de la div
     // decaler à gauche
     font-size: 18px;
-
-
 }
-
-
 
 .socialtwitter {
     height: 30px;
