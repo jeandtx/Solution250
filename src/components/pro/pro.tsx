@@ -1,3 +1,4 @@
+import NivoPie from '../piechart/piechart';
 import styles from './pro.module.scss';
 import { useState, useEffect } from 'react';
 
@@ -87,7 +88,7 @@ export const Pro = ({ text, labels }: ProProps) => {
         getResume({
             inputs: text,
         }).then((response) => {
-            setOutputResume(JSON.stringify(response));
+            setOutputResume(JSON.stringify(response[0].summary_text));
         });
 
         getImage({ inputs: text }).then((response: any) => {

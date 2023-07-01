@@ -79,7 +79,6 @@ export const Stars = ({ rating, review, back, text, labels }: StarsProps) => {
                         {fullStars}/{stars.length}
                     </p>
                     <div>{stars}</div>
-                    <div>This is the pro stats</div>
                     <Pro text={text} labels={labels} />
                 </>
             );
