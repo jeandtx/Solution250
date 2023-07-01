@@ -78,11 +78,18 @@ export const Pro = ({ text, labels }: ProProps) => {
             inputs: text,
             parameters: { candidate_labels: labels },
         }).then((response) => {
-            setOutputLabel(JSON.stringify(response));
+            let data: any = [];
+            for (let i = 0; i < response.labels.length; i++) {
+                data.push({
+                    label: response.labels[i],
+                    score: response.scores[i],
+                });
+            }
+            setOutputLabel(data);
         });
 
         getEmotion({ inputs: text }).then((response) => {
-            setOutputEmotion(JSON.stringify(response));
+            setOutputEmotion(response[0].slice(0, 5));
         });
 
         getResume({
@@ -110,13 +117,24 @@ export const Pro = ({ text, labels }: ProProps) => {
             <div>This is the pro stats component for this review :</div>
             <div>{text}</div>
             <h1>outputLabel</h1>
-            <p>{outputLabel}</p>
+            {outputLabel && outputLabel.length > 0 && (
+                <NivoPie data={outputLabel} />
+            )}
             <h1>outputEmotion</h1>
-            <p>{outputEmotion}</p>
+            {outputEmotion && outputEmotion.length > 0 && (
+                <NivoPie data={outputEmotion} />
+            )}
             <h1>outputResume</h1>
             <p>{outputResume}</p>
             <h1>outputImage</h1>
-            <img src={outputImage} alt="image" />
+            <img
+                src={outputImage}
+                alt="image"
+                style={{
+                    width: '60%',
+                    height: 'auto',
+                }}
+            />
         </div>
     );
 };
