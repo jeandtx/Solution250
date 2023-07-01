@@ -60,7 +60,7 @@ export const Stars = ({ rating, review, back, text, labels }: StarsProps) => {
     };
 
     let content;
-    if (review.trim() === '' || rating === -0.26435109972953796) {
+    if (review.trim() === '' || rating === -0.26) {
         content = (
             <div className={styles.error}>
                 <p>
