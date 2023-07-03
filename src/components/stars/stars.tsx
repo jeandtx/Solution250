@@ -93,10 +93,6 @@ export const Stars = ({ rating, review, back, text, labels, resetText }: StarsPr
                         {fullStars}/{stars.length}
                     </p>
                     <div>{stars}</div>
-                    <div>
-                        If you want to access more data you need to be a pro
-                        user
-                    </div>
                 </>
             );
         }

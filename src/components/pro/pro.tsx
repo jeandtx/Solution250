@@ -154,8 +154,6 @@ export const Pro = ({ text, labels }: ProProps) => {
 
     return (
         <div className={styles.pro}>
-            <div>This is the pro stats component for this review :</div>
-            <div>{text}</div>
             <h1>outputLabel</h1>
             {outputLabel && outputLabel.length > 0 && (
                 <ChartCarousel data={outputLabel} />
