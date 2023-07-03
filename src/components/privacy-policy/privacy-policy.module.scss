@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css?family=Lexend Deca');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+h1{
+    font-family: 'Lexend Deca';
+    color: #25338D;
+}
+h2, h3, p, a, li{
+    font-family: 'Montserrat';
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+}
+
+.privacy_first_section{
+    margin: 5% 15% ;
+    justify-content: center;
+    align-items: center;
+
+}
+.start_page{
+    display: column;
+    width: 70%;
+    padding: 5%;
+    width: 50%;
+}
+.div_img{
+  width: 50%;
+  margin-top: auto;
+  margin-bottom: auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.img_security {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+
+}
+.section_privacy{
+  display: flex;
+  flex-direction: row;
+}
+.summary{
+    display: column;
+    width: 70%;
+    margin: 2% 15% ;
+    text-align: center;
+
+}
+
+.cardRows{
+    display: flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items: center;
+  }
+.firstRow{
+    display: flex;
+    flex-direction: row;
+}
+.secondRow{
+    display: flex;
+    flex-direction: row;
+}
+.thirdRow{
+    display: flex;
+    flex-direction: row;
+}
+  
+  .card {
+    width: 500px;
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px;
+  }
+
+  .card:hover {
+    background-color: #F5F7F9;
+  }
+
+  .card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-family: 'Lexend Deca';
+    color: #25338D;
+  }
+
+  .card p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+.privacy_content{
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+
+.table_content{
+    width:30%;
+    padding: 15px;
+    font-weight: bold;
+}
+
+
+  .stickyContent {
+    position: sticky;
+    top: 20px; /* Adjust the top value to position the table of contents */
+    padding: 10px;
+    height: calc(100vh - 40px); /* Adjust the height of the table of contents */
+    overflow-y: auto;
+  }
+
+.table_content ul li {
+    list-style-type: none;
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+
+.table_content ul li:hover {
+    text-decoration: underline;
+}
+.privacy_details{
+    border-left: 1px solid #CBD5E0;
+    width:70%;
+}
+
+.ul_privacy_details{
+    list-style-type: none;
+}

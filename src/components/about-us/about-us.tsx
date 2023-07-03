@@ -1,5 +1,6 @@
 import styles from './about-us.module.scss';
 import React from 'react';
+import { PrivacyPolicy } from '../privacy-policy/privacy-policy';
 
 interface SectionProps {
     title: string;
