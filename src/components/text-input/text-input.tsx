@@ -34,20 +34,21 @@ export const TextInput = ({
         'clean',
         'dirty',
     ]);
-    
-
     const textContainerRef = React.useRef<any>(null);
     const textAreaRef = React.useRef<any>(null);
     const isPro = true;
     const [CSVcontent, setCSVcontent] = useState<any>(null);
+
+    useEffect(() => {
+        setCounter(text.length);
+    }, [text]);
 
     const handleTextChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setText(event.target.value);
         onChanges(event.target.value);
     };
 
-    const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
+    const handleSubmit = () => {
         predict();
         setShowCharts(true);
         setCounter(0);
@@ -70,10 +71,6 @@ export const TextInput = ({
           }
       }
   };
-
-    useEffect(() => {
-        setCounter(text.length);
-    }, [text]);
 
     const toggleLang = (event: React.ChangeEvent<HTMLInputElement>) => {
         language(event.target.checked);
@@ -107,6 +104,13 @@ export const TextInput = ({
       }
     
       return result;
+    }
+
+    const handleEnterPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        const keyCode = event.keyCode;
+        if (keyCode === 13) {
+            handleSubmit()
+        }
     }
     
 
@@ -147,6 +151,7 @@ export const TextInput = ({
                                 onBlur={() => setFocusArea(false)}
                                 onInput={updateTextContainerHeight}
                                 placeholder='Enter your review here...'
+                                onKeyDown={handleEnterPress}
                             />
                             <div className={styles.line}></div>
                             <div className={styles.optionsContainer}>
