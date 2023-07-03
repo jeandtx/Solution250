@@ -73,7 +73,14 @@ export const TextInput = ({
 
     useEffect(() => {
         setCounter(text.length);
+        // a chaque fois que la page est chargé le text area est vide
+        
     }, [text]);
+
+    const resetText: any = () => {
+        setText('');
+      };
+      
 
     const toggleLang = (event: React.ChangeEvent<HTMLInputElement>) => {
         language(event.target.checked);
@@ -120,6 +127,7 @@ export const TextInput = ({
                         back={setShowCharts}
                         text={text}
                         labels={labels}
+                        resetText={resetText}
                     />
                 </div>
             ) : (

@@ -10,9 +10,11 @@ export interface StarsProps {
     back: any;
     text: string;
     labels: any;
+    resetText: any;
+    
 }
 
-export const Stars = ({ rating, review, back, text, labels }: StarsProps) => {
+export const Stars = ({ rating, review, back, text, labels, resetText }: StarsProps) => {
     const [isLoading, setIsLoading] = useState(true);
     const [pro, setPro] = useState(false);
 
@@ -102,6 +104,9 @@ export const Stars = ({ rating, review, back, text, labels }: StarsProps) => {
 
     const reloadPage = () => {
         back(false); // Cache le graphique
+        resetText();
+
+        
     };
 
     const navigateToDetailedReview = () => {
