@@ -162,7 +162,7 @@ export const Pro = ({ text, labels }: ProProps) => {
             )}
             <h1>outputEmotion</h1>
             {outputEmotion && outputEmotion.length > 0 && (
-                <NivoPie data={outputEmotion} />
+                <ChartCarousel data={outputEmotion} />
             )}
             <h1>outputResume</h1>
             <p>{outputResume}</p>
