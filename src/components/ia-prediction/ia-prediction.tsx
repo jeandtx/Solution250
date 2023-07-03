@@ -34,7 +34,6 @@ export const IAPrediction = ({
     };
 
     const predict = async (text: string, model: any, tokenizer: any) => {
-        console.log(lang ? 'lang is true' : 'lang is false');
 
         if (lang) {
             const apiKey = 'AIzaSyAeuG9j8aQIy74Hmk_VoaB0ik_tgIqILhA';
@@ -59,7 +58,6 @@ export const IAPrediction = ({
             console.log('text traduit' + translatedText);
             text = translatedText;
         }
-        console.log(' predict text is ' + text);
         const lowercaseText = text.toLowerCase(); // Convert the text to lowercase
 
         const text_array = lowercaseText.split(' ');
