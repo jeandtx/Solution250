@@ -3,6 +3,7 @@ import styles from './text-input.module.scss';
 import { Stars } from '../stars/stars';
 import TagsInput from '../tags-input/tags-input';
 import Switch from '@material-ui/core/Switch';
+import { Scrapping } from '../scrapping/scrapping';
 
 export interface FormCardProps {
     textArg?: any;
@@ -55,97 +56,116 @@ export const TextInput = ({
     };
 
     const updateTextContainerHeight = () => {
-      const textContainer = textContainerRef.current;
-      const textArea = textAreaRef.current;
-      console.log(textArea.scrollHeight)
-      if (textContainer && textArea) {
-          if (textArea.scrollHeight > 52) {
-              textContainer.style.height = 'auto';
-              textArea.style.height = 'auto';
-              const textAreaHeight = textArea.scrollHeight;
-              textContainer.style.height = `${textAreaHeight+100}px`;
-              textArea.style.height = `${textAreaHeight}px`;
-          } else {
-              textContainer.style.height = '150px';
-              textArea.style.height = '150px';
-          }
-      }
-  };
+        const textContainer = textContainerRef.current;
+        const textArea = textAreaRef.current;
+        console.log(textArea.scrollHeight);
+        if (textContainer && textArea) {
+            if (textArea.scrollHeight > 52) {
+                textContainer.style.height = 'auto';
+                textArea.style.height = 'auto';
+                const textAreaHeight = textArea.scrollHeight;
+                textContainer.style.height = `${textAreaHeight + 100}px`;
+                textArea.style.height = `${textAreaHeight}px`;
+            } else {
+                textContainer.style.height = '150px';
+                textArea.style.height = '150px';
+            }
+        }
+    };
 
     useEffect(() => {
         setCounter(text.length);
         // a chaque fois que la page est chargé le text area est vide
-        
     }, [text]);
 
     const resetText: any = () => {
         setText('');
-      };
-      
+    };
 
     const toggleLang = (event: React.ChangeEvent<HTMLInputElement>) => {
         language(event.target.checked);
     };
 
     function handleFileInput(event: ChangeEvent<HTMLInputElement>): void {
-      const file = event.target.files?.[0];
-      if (file) {
-        const reader = new FileReader();
-    
-        reader.onload = () => {
-          const csvData = reader.result as string;
-          const jsonData = convertCsvToJson(csvData);
-          console.log(jsonData)
-        };
-    
-        reader.readAsText(file);
-      }
-    }
-    
-    function convertCsvToJson(csvData: string): object {
-      const lines = csvData.split('\n');
-    
-      const result: { [key: string]: string } = {};
-      for (let i = 0; i < lines.length; i++) {
-        const currentValue = lines[i].trim(); // Remove leading/trailing whitespace
-    
-        if (currentValue) {
-          result[i.toString()] = currentValue;
+        const file = event.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = () => {
+                const csvData = reader.result as string;
+                const jsonData = convertCsvToJson(csvData);
+                console.log(jsonData);
+            };
+
+            reader.readAsText(file);
         }
-      }
-    
-      return result;
     }
 
-    const handleEnterPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    function convertCsvToJson(csvData: string): object {
+        const lines = csvData.split('\n');
+
+        const result: { [key: string]: string } = {};
+        for (let i = 0; i < lines.length; i++) {
+            const currentValue = lines[i].trim(); // Remove leading/trailing whitespace
+
+            if (currentValue) {
+                result[i.toString()] = currentValue;
+            }
+        }
+
+        return result;
+    }
+
+    const handleEnterPress = (
+        event: React.KeyboardEvent<HTMLTextAreaElement>
+    ) => {
         const keyCode = event.keyCode;
         if (keyCode === 13) {
-            handleSubmit()
+            handleSubmit();
         }
-    }
-    
+    };
+
+    const ExtractASIN = (text: string) => {
+        let ASINreg = new RegExp(/(?:\/)([A-Z0-9]{10})(?:$|\/|\?)/);
+        let cMatch = RegExp(ASINreg).exec(text);
+        if (cMatch == null) {
+            console.log('No ASIN found');
+            return null;
+        }
+        return cMatch[1];
+    };
 
     return (
         <div className={styles.homePageContainer}>
             {showCharts ? (
                 <div className={styles.chartContainer}>
-                    <Stars
-                        rating={parseFloat(output)}
-                        review={text}
-                        back={setShowCharts}
-                        text={text}
-                        labels={labels}
-                        resetText={resetText}
-                    />
+                    {ExtractASIN(text) ? (
+                        <div>
+                            <Scrapping text={text} labels={labels} />
+                        </div>
+                    ) : (
+                        <Stars
+                            rating={parseFloat(output)}
+                            review={text}
+                            back={setShowCharts}
+                            text={text}
+                            labels={labels}
+                            resetText={resetText}
+                        />
+                    )}
                 </div>
             ) : (
                 <>
                     <div className={styles.inputContainer}>
                         <div className={styles.titleContainer}>
-                            <h1 style={{ textAlign: 'center' }}>Get started!</h1>
-                            <p>Enter your reviews to get the feeling analysis</p>
+                            <h1 style={{ textAlign: 'center' }}>
+                                Get started!
+                            </h1>
+                            <p>
+                                Enter your reviews to get the feeling analysis
+                            </p>
                         </div>
-                        { isPro ? (
+                        {isPro ? (
                             <TagsInput myTags={labels} setMyTags={setLabels} />
                         ) : null}
                         <div
@@ -153,7 +173,7 @@ export const TextInput = ({
                             className={`${styles.textContainer} ${
                                 focusArea ? styles.textFocus : ''
                             }`}
-                        > 
+                        >
                             <textarea
                                 ref={textAreaRef}
                                 onChange={handleTextChange}
@@ -162,7 +182,7 @@ export const TextInput = ({
                                 onFocus={() => setFocusArea(true)}
                                 onBlur={() => setFocusArea(false)}
                                 onInput={updateTextContainerHeight}
-                                placeholder='Enter your review here...'
+                                placeholder="Enter your review here..."
                                 onKeyDown={handleEnterPress}
                             />
                             <div className={styles.line}></div>
@@ -175,7 +195,11 @@ export const TextInput = ({
                                     onMouseOver={() => setHoverLogo(true)}
                                     onMouseLeave={() => setHoverLogo(false)}
                                 >
-                                    <input type="file" accept=".csv" onChange={handleFileInput} />
+                                    <input
+                                        type="file"
+                                        accept=".csv"
+                                        onChange={handleFileInput}
+                                    />
                                     <i
                                         className="fa fa-upload"
                                         style={
@@ -184,25 +208,47 @@ export const TextInput = ({
                                                 : { color: 'black' }
                                         }
                                     ></i>
-                                    
                                 </div>
-                                <img src={"src\\assets\\en_flag.png"} alt="English flag" height="15" width="22.5" style={{marginTop: "11px", marginLeft: "-16px", position: "absolute"}} />                                
+                                <img
+                                    src={'src\\assets\\en_flag.png'}
+                                    alt="English flag"
+                                    height="15"
+                                    width="22.5"
+                                    style={{
+                                        marginTop: '11px',
+                                        marginLeft: '-16px',
+                                        position: 'absolute',
+                                    }}
+                                />
                                 <Switch
-                                        checked={lang}
-                                        onChange={toggleLang}
-                                        name="langSwitch"
-                                        inputProps={{ 'aria-label': 'toggle language' }}
-                                    />  
-                                <img src={"src\\assets\\fr_flag.png"} alt="English flag" height="15" width="22.5" style={{marginTop: "11px", marginLeft: "-6px", position: "absolute"}} />
+                                    checked={lang}
+                                    onChange={toggleLang}
+                                    name="langSwitch"
+                                    inputProps={{
+                                        'aria-label': 'toggle language',
+                                    }}
+                                />
+                                <img
+                                    src={'src\\assets\\fr_flag.png'}
+                                    alt="English flag"
+                                    height="15"
+                                    width="22.5"
+                                    style={{
+                                        marginTop: '11px',
+                                        marginLeft: '-6px',
+                                        position: 'absolute',
+                                    }}
+                                />
                             </div>
                         </div>
-                        <button onClick={handleSubmit} className={styles.button}>
-                            
+                        <button
+                            onClick={handleSubmit}
+                            className={styles.button}
+                        >
                             Smash to send
                         </button>
                     </div>
                 </>
-
             )}
         </div>
     );

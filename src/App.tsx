@@ -7,7 +7,7 @@ import { Login } from './screens/login/login';
 import { Privacy } from './screens/privacy/privacy';
 import { Footer } from './components/footer/footer';
 import styles from './App.module.scss';
-import { Scrapping } from './screens/scrapping/scrapping';
+import { Scrapping } from './components/scrapping/scrapping';
 
 function App() {
     return (
