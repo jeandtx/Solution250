@@ -39,9 +39,7 @@ export const Footer = () => {
                         </div>  
                     </div>
                     <div className={styles.item3}>
-                    <Link to="/privacy" >
                         <p>Privacy policy</p><br/>
-                    </Link>
                         <p>Terms of use</p>
                     </div>
                     </div>
