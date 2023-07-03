@@ -158,15 +158,7 @@ export const Stars = ({ rating, review, back, text, labels, resetText }: StarsPr
                     </>
                 )}
             </div>
-            <button
-                onClick={() => {
-                    console.log('reseted variables');
-                    setPro(false);
-                }}
-                className={styles.button2}
-            >
-                RESET
-            </button>
+            
         </div>
     );
 };

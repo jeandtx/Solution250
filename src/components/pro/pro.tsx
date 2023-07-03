@@ -9,9 +9,32 @@ export interface ProProps {
 }
 
 export const Pro = ({ text, labels }: ProProps) => {
+    const apiKey = 'AIzaSyAeuG9j8aQIy74Hmk_VoaB0ik_tgIqILhA';
+    const targetLanguage = 'en';
+
+    async function traduce(text: string) {
+        const response = await fetch(
+            `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    q: text,
+                    target: targetLanguage,
+                }),
+            }
+        );
+
+        const data = await response.json();
+        const translatedText = data.data.translations[0].translatedText;
+        console.log('Pro text' + translatedText);
+        return translatedText;
+    }
+
     async function getLabels(data: any) {
         const response = await fetch(
-            // 'https://api-inference.huggingface.co/models/facebook/bart-large-mnli',
             'https://api-inference.huggingface.co/models/MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli',
             {
                 headers: {
@@ -74,34 +97,50 @@ export const Pro = ({ text, labels }: ProProps) => {
         return result;
     }
 
+    const [loading, setLoading] = useState(true);
+    const [outputLabel, setOutputLabel] = useState('');
+    const [outputEmotion, setOutputEmotion] = useState('');
+    const [outputResume, setOutputResume] = useState('');
+    const [outputImage, setOutputImage] = useState('');
+
     const fetchAll = async () => {
-        getLabels({
-            inputs: text,
-            parameters: { candidate_labels: labels },
-        }).then((response) => {
-            let data: any = [];
-            for (let i = 0; i < response.labels.length; i++) {
-                data.push({
-                    label: response.labels[i],
-                    score: response.scores[i],
-                });
+        const translatedText = await traduce(text);
+
+        Promise.all([
+            getLabels({
+                inputs: translatedText,
+                parameters: { candidate_labels: labels },
+            }),
+            getEmotion({ inputs: translatedText }),
+            getResume({ inputs: translatedText }),
+            getImage({ inputs: translatedText }),
+        ]).then(([labelsRes, emotionsRes, resumeRes, imageRes]) => {
+            if(labelsRes && labelsRes.labels){
+                let data: any = [];
+                for (let i = 0; i < labelsRes.labels.length; i++) {
+                    data.push({
+                        label: labelsRes.labels[i],
+                        score: labelsRes.scores[i],
+                    });
+                }
+                setOutputLabel(data);
             }
-            setOutputLabel(data);
-        });
-
-        getEmotion({ inputs: text }).then((response) => {
-            setOutputEmotion(response[0].slice(0, 5));
-        });
-
-        getResume({
-            inputs: text,
-        }).then((response) => {
-            setOutputResume(JSON.stringify(response[0].summary_text));
-        });
-
-        getImage({ inputs: text }).then((response: any) => {
-            const url: any = URL.createObjectURL(response);
-            setOutputImage(url);
+        
+            if(emotionsRes && emotionsRes[0]){
+                setOutputEmotion(emotionsRes[0].slice(0, 5));
+            }
+        
+            if(resumeRes && resumeRes[0]){
+                setOutputResume(JSON.stringify(resumeRes[0].summary_text));
+            }
+        
+            if(imageRes){
+                const url: any = URL.createObjectURL(imageRes);
+                setOutputImage(url);
+            }
+            setLoading(false);
+        }).catch(error => {
+            console.error(error);
         });
     };
 
@@ -109,10 +148,10 @@ export const Pro = ({ text, labels }: ProProps) => {
         fetchAll();
     }, []);
 
-    const [outputLabel, setOutputLabel] = useState('');
-    const [outputEmotion, setOutputEmotion] = useState('');
-    const [outputResume, setOutputResume] = useState('');
-    const [outputImage, setOutputImage] = useState();
+    if (loading) {
+    return <div className={styles.loading} />;
+    }
+
     return (
         <div className={styles.pro}>
             <div>This is the pro stats component for this review :</div>
