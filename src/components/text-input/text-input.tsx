@@ -58,7 +58,6 @@ export const TextInput = ({
     const updateTextContainerHeight = () => {
         const textContainer = textContainerRef.current;
         const textArea = textAreaRef.current;
-        console.log(textArea.scrollHeight);
         if (textContainer && textArea) {
             if (textArea.scrollHeight > 52) {
                 textContainer.style.height = 'auto';
@@ -129,7 +128,6 @@ export const TextInput = ({
         let ASINreg = new RegExp(/(?:\/)([A-Z0-9]{10})(?:$|\/|\?)/);
         let cMatch = RegExp(ASINreg).exec(text);
         if (cMatch == null) {
-            console.log('No ASIN found');
             return null;
         }
         return cMatch[1];
