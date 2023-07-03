@@ -52,6 +52,7 @@ interface ScrappingProps {
 export const Scrapping = ({ text, labels }: ScrappingProps) => {
     const [output, setOutput] = React.useState([]);
     const [result, setResult] = React.useState<any>(null);
+    const [buttonClicked, setButtonClicked] = React.useState<boolean>(false);
 
     const scrapp = async () => {
         const params = {
@@ -110,6 +111,11 @@ export const Scrapping = ({ text, labels }: ScrappingProps) => {
         console.log('Result:', transformed_result);
     };
 
+    const handleSubmit = () => {
+        analyze(output);
+        setButtonClicked(true);
+    }
+
     useEffect(() => {
         analyze(scrapp());
     }, []);
@@ -121,9 +127,8 @@ export const Scrapping = ({ text, labels }: ScrappingProps) => {
                     <h1>List of reviews</h1>
                     <button
                         className={styles.button}
-                        onClick={() => {
-                            analyze(output);
-                        }}
+                        onClick={handleSubmit}
+                        disabled={buttonClicked}
                     >
                         Analyze !
                     </button>
