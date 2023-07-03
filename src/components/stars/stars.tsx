@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import yellowStar from '../../assets/yellowstar.png';
 import greyStar from '../../assets/greystar.png';
 import { Pro } from '../pro/pro';
+import { show } from '@blueprintjs/core/lib/esm/components/context-menu/contextMenu';
 
 export interface StarsProps {
     rating: number;
@@ -11,15 +12,15 @@ export interface StarsProps {
     text: string;
     labels: any;
     resetText: any;
+    pro: boolean;
     
 }
 
-export const Stars = ({ rating, review, back, text, labels, resetText }: StarsProps) => {
+export const Stars = ({ rating, review, back, text, labels, resetText, pro }: StarsProps) => {
     const [isLoading, setIsLoading] = useState(true);
-    const [pro, setPro] = useState(false);
+    const [showDetailedReview, setShowDetailedReview] = useState(false);
 
     useEffect(() => {
-        setPro(false);
         setTimeout(() => {
             setIsLoading(false);
         }, 2000);
@@ -81,7 +82,9 @@ export const Stars = ({ rating, review, back, text, labels, resetText }: StarsPr
                         {fullStars}/{stars.length}
                     </p>
                     <div>{stars}</div>
-                    <Pro text={text} labels={labels} />
+                    {showDetailedReview && (
+                        <Pro text={text} labels={labels} />
+                    )}
                 </>
             );
         } else {
@@ -105,10 +108,8 @@ export const Stars = ({ rating, review, back, text, labels, resetText }: StarsPr
         
     };
 
-    const navigateToDetailedReview = () => {
-        // Check if the user is a pro user
-        // pro being a props of this component
-        setPro(true);
+    const handleDetailedReview = () => {
+        setShowDetailedReview(true);
     };
 
     return (
@@ -118,41 +119,30 @@ export const Stars = ({ rating, review, back, text, labels, resetText }: StarsPr
             </div>
             <p>
                 Thank you for using our tools. Here are the results for your
-                analysis:
+                analysis.
             </p>
 
             <div className={styles.result}>
-                {isLoading ? (
-                    <div className={styles.loading}></div>
-                ) : (
-                    <>
-                        {content}
-                        <div className={styles.buttons}>
+                {content}
+                <div className={styles.buttons}>
+                    <button
+                        onClick={reloadPage}
+                        className={styles.button1}
+                    >
+                        <h1>Reload Page</h1>
+                    </button>
+                        <div className={styles.pro}>
                             <button
-                                onClick={reloadPage}
-                                className={styles.button1}
+                                onClick={
+                                    handleDetailedReview
+                                }
+                                className={`${styles.button2} ${showDetailedReview ? styles.disabled : ''}`}
+                                disabled={showDetailedReview}
                             >
-                                <h1>Reload Page</h1>
+                                <h1>Detailed Review</h1>
                             </button>
-                            {!pro && (
-                                <>
-                                    {!pro && (
-                                        <div className={styles.pro}>
-                                            <button
-                                                onClick={
-                                                    navigateToDetailedReview
-                                                }
-                                                className={styles.button2}
-                                            >
-                                                <h1>Detailed Review</h1>
-                                            </button>
-                                        </div>
-                                    )}
-                                </>
-                            )}
                         </div>
-                    </>
-                )}
+                </div>
             </div>
             
         </div>

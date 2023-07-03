@@ -10,13 +10,8 @@
     height: 4rem;
     background-color: white;
     border-radius: 10px;
-}
-
-.barChart {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem 8rem 1rem 8rem;
+    // add shadow
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .pieChart {
@@ -24,6 +19,33 @@
     justify-content: center;
     align-items: center;
     padding: 1rem 8rem 1rem 8rem;
+    transition: .2s;
+}
+
+.pieChart:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.pieChart:active {
+    transform: scale(0.8);
+}
+
+.barChart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 8rem 1rem 8rem;
+    transition: .2s;
+}
+
+.barChart:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.barChart:active {
+    transform: scale(0.8);
 }
 
 .radarChart {
@@ -31,6 +53,16 @@
     justify-content: center;
     align-items: center;
     padding: 1rem 8rem 1rem 8rem;
+    transition: .2s
+}
+
+.radarChart:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.radarChart:active {
+    transform: scale(0.8);
 }
 
 .animation {

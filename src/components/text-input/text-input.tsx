@@ -151,6 +151,7 @@ export const TextInput = ({
                             text={text}
                             labels={labels}
                             resetText={resetText}
+                            pro={isPro}
                         />
                     )}
                 </div>

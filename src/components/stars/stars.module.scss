@@ -95,11 +95,11 @@
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.button2:hover {
+.button2:hover:enabled {
     transform: scale(1.05);
 }
 
-.button2:active {
+.button2:active:enabled {
     transform: scale(0.95);
     box-shadow: none;
 }
@@ -111,6 +111,12 @@
     font-size: 15px;
     line-height: 25px;
     color: #ffffff;
+}
+
+.disabled {
+    background: #e0e0e0;
+    border: 2px solid #e0e0e0;
+    cursor: default;
 }
 
 .loading {

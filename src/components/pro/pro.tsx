@@ -149,7 +149,11 @@ export const Pro = ({ text, labels }: ProProps) => {
     }, []);
 
     if (loading) {
-    return <div className={styles.loading} />;
+    return (
+        <div className={styles.loadingContainer}>
+            <div className={styles.loading} />
+        </div>
+    )
     }
 
     return (
