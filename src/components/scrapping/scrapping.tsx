@@ -56,7 +56,7 @@ export const Scrapping = ({ text, labels }: ScrappingProps) => {
 
     const scrapp = async () => {
         const params = {
-            api_key: 'D2132ABBBBF04A878B19738F53749EED',
+            api_key: '6BFB1D719BBF42F2800C4F7E007B17D2',
             amazon_domain: 'amazon.com',
             type: 'reviews',
             asin: ExtractASIN(text),
@@ -114,7 +114,7 @@ export const Scrapping = ({ text, labels }: ScrappingProps) => {
     const handleSubmit = () => {
         analyze(output);
         setButtonClicked(true);
-    }
+    };
 
     useEffect(() => {
         analyze(scrapp());
