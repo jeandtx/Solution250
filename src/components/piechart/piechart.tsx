@@ -1,3 +1,4 @@
+
 import React from 'react';
 import styles from './piechart.module.scss';
 import PropTypes from 'prop-types'
@@ -68,12 +69,7 @@ import { ResponsivePie } from '@nivo/pie';
     )
 
       const NivoPie: React.FC<NivoPieProps> = ({ data }) => {
-        const colors = ["hsl(288, 70%, 50%)", "hsl(105, 70%, 50%)", "hsl(83, 70%, 50%)", "hsl(100, 70%, 50%)", "hsl(285, 70%, 50%)" ,
-        "hsl(0, 70%, 50%)",
-        "hsl(45, 70%, 50%)",
-        "hsl(135, 70%, 50%)",
-        "hsl(180, 70%, 50%)",
-        "hsl(240, 70%, 50%)" ]
+        const colors = ["#482664", "#25338D"]
 
         const labeledArray = data.map((item: any, index: number) => ({
           id: item.label,
@@ -84,7 +80,7 @@ import { ResponsivePie } from '@nivo/pie';
     
       return (
         <div className={styles.div_piechart}> 
-          <MyResponsivePie data={labeledArray}/>
+          <MyResponsivePie data={labeledArray} />
         </div>
       );
     };

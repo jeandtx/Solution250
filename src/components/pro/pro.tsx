@@ -1,7 +1,7 @@
-import NivoPie from '../piechart/piechart';
 import styles from './pro.module.scss';
 import { useState, useEffect } from 'react';
 import { ChartCarousel } from '../chart-carousel/chart-carousel';
+
 
 export interface ProProps {
     text: string;
@@ -161,11 +161,14 @@ export const Pro = ({ text, labels }: ProProps) => {
             <h1>outputLabel</h1>
             {outputLabel && outputLabel.length > 0 && (
                 <ChartCarousel data={outputLabel} />
+
             )}
             <h1>outputEmotion</h1>
             {outputEmotion && outputEmotion.length > 0 && (
                 <ChartCarousel data={outputEmotion} />
+                
             )}
+            
             <h1>outputResume</h1>
             <p>{outputResume}</p>
             <h1>outputImage</h1>

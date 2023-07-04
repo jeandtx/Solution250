@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './chart-carousel.module.scss';
 import NivoPie from '../piechart/piechart';
+import BarPlot from '../barplot/barplot';
 import 'font-awesome/css/font-awesome.min.css'
 
 export interface ChartCarouselProps {
@@ -36,7 +37,10 @@ export const ChartCarousel = ({ data }: ChartCarouselProps) => {
                 </span>
             </div>
             <div>
-                {chartFocus === 0 && <span className={`${chartFocus === 0 ? styles.animation : ''}`}><NivoPie data={data}/></span>}   
+                {chartFocus === 0 && <span className={`${chartFocus === 0 ? styles.animation : ''}`}><NivoPie data={data}/></span>}
+                <div className={styles.barplot_container}>
+                    {chartFocus === 1 && <span className={`${chartFocus === 1 ? styles.animation : ''}`}><BarPlot data={data}/></span>} 
+                </div> 
             </div>
         </div>
     )
