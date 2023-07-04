@@ -132,16 +132,16 @@ export const Scrapping = ({ text, labels }: ScrappingProps) => {
                     >
                         Analyze !
                     </button>
-                    <table>
+                    <table className={styles.table}>
                         <tbody>
-                            <tr>
+                            <tr className={styles.tableHead}>
                                 <th>Index</th>
                                 <th>Review</th>
                                 <th>Emotion</th>
                                 <th>Labels</th>
                             </tr>
                             {result.map((element: any, index: number) => (
-                                <tr key={index}>
+                                <tr key={index} className={styles.tableRow}>
                                     <td>{index + 1}</td>
                                     <td>{element.review}</td>
                                     <td>

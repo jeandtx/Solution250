@@ -51,3 +51,52 @@
 .textInput:focus {
     border-color: #ff3d47;
 }
+
+.table {
+    background-color: hsl(0, 0%, 100%);
+    width: 80vw;
+    border: 1px solid #cac5c5;
+    border-radius: 10px;
+    border-spacing: 0;
+
+}
+
+.tableHead {
+    background-color: #f5f7f9;
+    border-top-left-radius: 10px;
+}
+
+.tableHead th:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.tableHead th:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.tableHead th {
+    padding: 1rem;
+    text-align: left;
+    padding-left: 1.5rem;
+    font-size: 0.8rem;
+}
+
+.tableHead th:nth-child(1){
+    width: 5%;
+}
+
+.tableHead th:nth-child(3){
+    width: 15%;
+}
+
+.tableHead th:nth-child(4){
+    width: 15%;
+}
+
+.tableRow td {
+    padding: 1.5rem;
+    text-align: left;
+    font-weight: 400;
+}
