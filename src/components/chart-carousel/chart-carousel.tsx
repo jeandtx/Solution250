@@ -36,11 +36,9 @@ export const ChartCarousel = ({ data }: ChartCarouselProps) => {
                     <i className="fa fa-diamond fa-sm" style={{transition: '0.5s', color: chartFocus === 2 ? "#ff3d47" : "black"}}/>
                 </span>
             </div>
-            <div>
+            <div className={styles.chartContainer}>
                 {chartFocus === 0 && <span className={`${chartFocus === 0 ? styles.animation : ''}`}><NivoPie data={data}/></span>}
-                <div className={styles.barplot_container}>
                     {chartFocus === 1 && <span className={`${chartFocus === 1 ? styles.animation : ''}`}><BarPlot data={data}/></span>} 
-                </div> 
             </div>
         </div>
     )
