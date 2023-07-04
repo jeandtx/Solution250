@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import yellowStar from '../../assets/yellowstar.png';
 import greyStar from '../../assets/greystar.png';
 import { Pro } from '../pro/pro';
-import { show } from '@blueprintjs/core/lib/esm/components/context-menu/contextMenu';
 
 export interface StarsProps {
     rating: number;
@@ -13,18 +12,18 @@ export interface StarsProps {
     labels: any;
     resetText: any;
     pro: boolean;
-    
 }
 
-export const Stars = ({ rating, review, back, text, labels, resetText, pro }: StarsProps) => {
-    const [isLoading, setIsLoading] = useState(true);
+export const Stars = ({
+    rating,
+    review,
+    back,
+    text,
+    labels,
+    resetText,
+    pro,
+}: StarsProps) => {
     const [showDetailedReview, setShowDetailedReview] = useState(false);
-
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 2000);
-    }, []);
 
     const convertToStars = (rating: number) => {
         const adjustedRating = (rating + 1) / 2;
@@ -82,9 +81,7 @@ export const Stars = ({ rating, review, back, text, labels, resetText, pro }: St
                         {fullStars}/{stars.length}
                     </p>
                     <div>{stars}</div>
-                    {showDetailedReview && (
-                        <Pro text={text} labels={labels} />
-                    )}
+                    {showDetailedReview && <Pro text={text} labels={labels} />}
                 </>
             );
         } else {
@@ -104,8 +101,6 @@ export const Stars = ({ rating, review, back, text, labels, resetText, pro }: St
     const reloadPage = () => {
         back(false); // Cache le graphique
         resetText();
-
-        
     };
 
     const handleDetailedReview = () => {
@@ -125,26 +120,22 @@ export const Stars = ({ rating, review, back, text, labels, resetText, pro }: St
             <div className={styles.result}>
                 {content}
                 <div className={styles.buttons}>
-                    <button
-                        onClick={reloadPage}
-                        className={styles.button1}
-                    >
+                    <button onClick={reloadPage} className={styles.button1}>
                         <h1>Reload Page</h1>
                     </button>
-                        <div className={styles.pro}>
-                            <button
-                                onClick={
-                                    handleDetailedReview
-                                }
-                                className={`${styles.button2} ${showDetailedReview ? styles.disabled : ''}`}
-                                disabled={showDetailedReview}
-                            >
-                                <h1>Detailed Review</h1>
-                            </button>
-                        </div>
+                    <div className={styles.pro}>
+                        <button
+                            onClick={handleDetailedReview}
+                            className={`${styles.button2} ${
+                                showDetailedReview ? styles.disabled : ''
+                            }`}
+                            disabled={showDetailedReview}
+                        >
+                            <h1>Detailed Review</h1>
+                        </button>
+                    </div>
                 </div>
             </div>
-            
         </div>
     );
 };
