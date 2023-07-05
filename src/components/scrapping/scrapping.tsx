@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './scrapping.module.scss';
 import axios from 'axios';
 import { ChartCarousel } from '../chart-carousel/chart-carousel';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 const ExtractASIN = (text: string) => {
     let ASINreg = new RegExp(/(?:\/)([A-Z0-9]{10})(?:$|\/|\?)/);
@@ -50,36 +52,34 @@ interface ScrappingProps {
 }
 
 export const Scrapping = ({ text, labels }: ScrappingProps) => {
-    const [output, setOutput] = React.useState([]);
-    const [result, setResult] = React.useState<any>(null);
-    const [resultEmotion, setResultEmotion] = React.useState<any>(null);
-    const [resultLabels, setResultLabels] = React.useState<any>(null);
-    const [buttonClicked, setButtonClicked] = React.useState<boolean>(false);
+    const [output, setOutput] = useState([]);
+    const [result, setResult] = useState<any>(null);
+    const [resultEmotion, setResultEmotion] = useState<any>(null);
+    const [resultLabels, setResultLabels] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
 
     const scrapp = async () => {
         const params = {
-            // api_key: 'F78CE4FFCC9E44409E8074DFF59CB762',
-            // Use with consciencentiousness
+            api_key: 'F78CE4FFCC9E44409E8074DFF59CB762',
             amazon_domain: 'amazon.com',
             type: 'reviews',
             asin: ExtractASIN(text),
         };
 
-        axios
-            .get('https://api.asindataapi.com/request', { params })
-            .then((response: any) => {
-                let out: any = [];
-                response = response.data.reviews;
-                for (const element of response) {
-                    out.push(element.body.toString());
-                }
-                setOutput(out);
-                console.log(out);
-                return out;
-            })
-            .catch((error: any) => {
-                console.log(error);
-            });
+        try {
+            const response = await axios.get('https://api.asindataapi.com/request', { params });
+            let out: any = [];
+            const reviews = response.data.reviews;
+            for (const element of reviews) {
+                out.push(element.body.toString());
+            }
+            setOutput(out);
+            console.log(out);
+            return out;
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
     };
 
     const calculateMeanLabels = (
@@ -176,7 +176,8 @@ export const Scrapping = ({ text, labels }: ScrappingProps) => {
         console.log(transformed_result);
         return transformed_result;
     };
-    const analyze = async (out: any) => {
+    const analyze = async () => {
+        const out = await scrapp();
         const result: any = {};
 
         for (let i = 0; i < out.length; i++) {
@@ -196,36 +197,28 @@ export const Scrapping = ({ text, labels }: ScrappingProps) => {
                 console.log('Error occurred:', error);
             }
         }
-        console.log(result);
-        console.log(result);
         setResultEmotion(calculateMeanEmotion(result).sort());
         setResultLabels(calculateMeanLabels(result));
         setResult(transform_result(result));
-
-        console.log(resultEmotion);
-    };
-
-    const handleSubmit = () => {
-        analyze(output);
-        setButtonClicked(true);
+        setLoading(false);
     };
 
     useEffect(() => {
-        analyze(scrapp());
+        analyze();
     }, []);
 
     return (
         <div>
-            {result ? (
+            {loading ? (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '85vh' }}>
+                <CircularProgress size={80} style={{ color: '#FF3D47' }} />
+            </div>
+
+
+            
+            ) :result ? (
                 <div className={styles.pro}>
                     <h1>List of reviews</h1>
-                    <button
-                        className={styles.button}
-                        onClick={handleSubmit}
-                        disabled={buttonClicked}
-                    >
-                        Analyze !
-                    </button>
                     <div className="charts">
                         <h1>Result per Emotions</h1>
                         <ChartCarousel data={resultEmotion} />
@@ -261,3 +254,4 @@ export const Scrapping = ({ text, labels }: ScrappingProps) => {
         </div>
     );
 };
+
