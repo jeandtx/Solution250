@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Lexend Deca');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.terms h1{
+    font-family: 'Lexend Deca';
+    color: #25338D;
+}
+.terms h2, .terms h3, .terms p, .terms a, .terms li {
+    font-family: 'Montserrat';
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    text-align: justify;
+}
+
+.summary {
+  display: flex;
+  width: 90%;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text_summary{
+  width: 50%;
+  padding:5%;
+}
+
+.img_summary{
+  width: 50%;
+  margin-top: auto;
+  margin-bottom: auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.table_content{
+  width:30%;
+  padding: 15px;
+  font-weight: bold;
+}
+
+.stickyContent {
+  position: sticky;
+  top: 20px;
+  padding: 10px;
+  height: calc(100vh - 40px);
+  overflow-y: auto;
+}
+
+.table_content ul li {
+  list-style-type: none;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.table_content ul li:hover {
+  text-decoration: underline;
+}
+
+.terms_conditions{
+  display: flex;
+  flex-direction: row;
+  padding: 5%;
+}
+.terms_details{
+  border-left: 1px solid #CBD5E0;
+  width:70%;
+}
+.ul_terms_details{
+  list-style-type: none;
+  text-align: justify;
+}
+

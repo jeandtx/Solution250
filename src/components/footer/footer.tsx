@@ -65,7 +65,7 @@ export const Footer = () => {
                                 <p>Privacy policy</p>
                                 <br />
                             </Link>
-                            <Link to="/privacy">
+                            <Link to="/terms">
                                 <p>Terms of use</p>
                             </Link>
                         </div>

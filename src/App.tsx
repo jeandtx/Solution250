@@ -5,6 +5,7 @@ import { Plans } from './screens/plans/plans';
 import { About } from './screens/about/about';
 import { Login } from './screens/login/login';
 import { Privacy } from './screens/privacy/privacy';
+import { Terms } from './screens/terms/terms';
 import { Footer } from './components/footer/footer';
 import styles from './App.module.scss';
 import { Scrapping } from './components/scrapping/scrapping';
@@ -21,6 +22,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/scrapp" element={<Scrapping />} />
                     <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/terms" element={<Terms />} />
                 </Routes>
                 <Footer />
             </Router>
