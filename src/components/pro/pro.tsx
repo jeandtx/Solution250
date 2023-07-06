@@ -2,7 +2,6 @@ import styles from './pro.module.scss';
 import { useState, useEffect } from 'react';
 import { ChartCarousel } from '../chart-carousel/chart-carousel';
 
-
 export interface ProProps {
     text: string;
     labels: any;
@@ -39,7 +38,7 @@ export const Pro = ({ text, labels }: ProProps) => {
             {
                 headers: {
                     Authorization:
-                        'Bearer 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',
+                        'Bearer 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',
                 },
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -55,7 +54,7 @@ export const Pro = ({ text, labels }: ProProps) => {
             {
                 headers: {
                     Authorization:
-                        'Bearer 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',
+                        'Bearer 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',
                 },
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -71,7 +70,7 @@ export const Pro = ({ text, labels }: ProProps) => {
             {
                 headers: {
                     Authorization:
-                        'Bearer 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',
+                        'Bearer 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',
                 },
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -87,7 +86,7 @@ export const Pro = ({ text, labels }: ProProps) => {
             {
                 headers: {
                     Authorization:
-                        'Bearer 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',
+                        'Bearer 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',
                 },
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -114,34 +113,36 @@ export const Pro = ({ text, labels }: ProProps) => {
             getEmotion({ inputs: translatedText }),
             getResume({ inputs: translatedText }),
             getImage({ inputs: translatedText }),
-        ]).then(([labelsRes, emotionsRes, resumeRes, imageRes]) => {
-            if(labelsRes && labelsRes.labels){
-                let data: any = [];
-                for (let i = 0; i < labelsRes.labels.length; i++) {
-                    data.push({
-                        label: labelsRes.labels[i],
-                        score: labelsRes.scores[i],
-                    });
+        ])
+            .then(([labelsRes, emotionsRes, resumeRes, imageRes]) => {
+                if (labelsRes && labelsRes.labels) {
+                    let data: any = [];
+                    for (let i = 0; i < labelsRes.labels.length; i++) {
+                        data.push({
+                            label: labelsRes.labels[i],
+                            score: labelsRes.scores[i],
+                        });
+                    }
+                    setOutputLabel(data);
                 }
-                setOutputLabel(data);
-            }
-        
-            if(emotionsRes && emotionsRes[0]){
-                setOutputEmotion(emotionsRes[0].slice(0, 5));
-            }
-        
-            if(resumeRes && resumeRes[0]){
-                setOutputResume(JSON.stringify(resumeRes[0].summary_text));
-            }
-        
-            if(imageRes){
-                const url: any = URL.createObjectURL(imageRes);
-                setOutputImage(url);
-            }
-            setLoading(false);
-        }).catch(error => {
-            console.error(error);
-        });
+
+                if (emotionsRes && emotionsRes[0]) {
+                    setOutputEmotion(emotionsRes[0].slice(0, 5));
+                }
+
+                if (resumeRes && resumeRes[0]) {
+                    setOutputResume(JSON.stringify(resumeRes[0].summary_text));
+                }
+
+                if (imageRes) {
+                    const url: any = URL.createObjectURL(imageRes);
+                    setOutputImage(url);
+                }
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     };
 
     useEffect(() => {
@@ -149,11 +150,11 @@ export const Pro = ({ text, labels }: ProProps) => {
     }, []);
 
     if (loading) {
-    return (
-        <div className={styles.loadingContainer}>
-            <div className={styles.loading} />
-        </div>
-    )
+        return (
+            <div className={styles.loadingContainer}>
+                <div className={styles.loading} />
+            </div>
+        );
     }
 
     return (
@@ -161,14 +162,12 @@ export const Pro = ({ text, labels }: ProProps) => {
             <h1>outputLabel</h1>
             {outputLabel && outputLabel.length > 0 && (
                 <ChartCarousel data={outputLabel} />
-
             )}
             <h1>outputEmotion</h1>
             {outputEmotion && outputEmotion.length > 0 && (
                 <ChartCarousel data={outputEmotion} />
-                
             )}
-            
+
             <h1>outputResume</h1>
             <p>{outputResume}</p>
             <h1>outputImage</h1>

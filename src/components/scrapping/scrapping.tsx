@@ -4,7 +4,6 @@ import axios from 'axios';
 import { ChartCarousel } from '../chart-carousel/chart-carousel';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-
 const ExtractASIN = (text: string) => {
     let ASINreg = new RegExp(/(?:\/)([A-Z0-9]{10})(?:$|\/|\?)/);
     let cMatch = RegExp(ASINreg).exec(text);
@@ -21,7 +20,7 @@ const getLabels = async (data: any) => {
         'https://api-inference.huggingface.co/models/MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli',
         {
             headers: {
-                Authorization: 'Bearer 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',
+                Authorization: 'Bearer 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',
             },
             method: 'POST',
             body: JSON.stringify(data),
@@ -32,11 +31,14 @@ const getLabels = async (data: any) => {
 };
 
 const getEmotion = async (data: any) => {
+    if (data.length > 500) {
+        data = data.slice(0, 500);
+    }
     const response = await fetch(
         'https://api-inference.huggingface.co/models/SamLowe/roberta-base-go_emotions',
         {
             headers: {
-                Authorization: 'Bearer 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',
+                Authorization: 'Bearer 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',
             },
             method: 'POST',
             body: JSON.stringify(data),
@@ -67,7 +69,10 @@ export const Scrapping = ({ text, labels }: ScrappingProps) => {
         };
 
         try {
-            const response = await axios.get('https://api.asindataapi.com/request', { params });
+            const response = await axios.get(
+                'https://api.asindataapi.com/request',
+                { params }
+            );
             let out: any = [];
             const reviews = response.data.reviews;
             for (const element of reviews) {
@@ -162,6 +167,14 @@ export const Scrapping = ({ text, labels }: ScrappingProps) => {
             score,
         }));
 
+        // remove the entries with less than 2
+        for (let i = 0; i < meanList.length; i++) {
+            if (meanList[i].score < 0.02) {
+                meanList.splice(i, 1);
+                i--;
+            }
+        }
+
         return meanList;
     };
 
@@ -197,7 +210,7 @@ export const Scrapping = ({ text, labels }: ScrappingProps) => {
                 console.log('Error occurred:', error);
             }
         }
-        setResultEmotion(calculateMeanEmotion(result).sort());
+        setResultEmotion(calculateMeanEmotion(result));
         setResultLabels(calculateMeanLabels(result));
         setResult(transform_result(result));
         setLoading(false);
@@ -210,13 +223,17 @@ export const Scrapping = ({ text, labels }: ScrappingProps) => {
     return (
         <div>
             {loading ? (
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '85vh' }}>
-                <CircularProgress size={80} style={{ color: '#FF3D47' }} />
-            </div>
-
-
-            
-            ) :result ? (
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        height: '85vh',
+                    }}
+                >
+                    <CircularProgress size={80} style={{ color: '#FF3D47' }} />
+                </div>
+            ) : result ? (
                 <div className={styles.pro}>
                     <h1>List of reviews</h1>
                     <div className="charts">
@@ -254,4 +271,3 @@ export const Scrapping = ({ text, labels }: ScrappingProps) => {
         </div>
     );
 };
-
