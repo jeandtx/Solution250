@@ -1,12 +1,12 @@
-# Project Name: 🌟 Feedback Analyzer 🌟
+# Project Name: 🌟 Solution250 🌟
 
 ## Description
 
-The Feedback Analyzer is a school project developed to provide a simple and efficient digital solution for businesses offering products or services with customer feedback. The traditional process of analyzing and drawing conclusions from scattered feedback can be time-consuming and resource-intensive. Leveraging machine learning algorithms, this project aims to extract summarized and quantified insights directly from raw data.
+The Solution250 is a school project developed to provide a simple and efficient digital solution for businesses offering products or services with customer feedback. The traditional process of analyzing and drawing conclusions from scattered feedback can be time-consuming and resource-intensive. Leveraging machine learning algorithms, this project aims to extract summarized and quantified insights directly from raw data.
 
 ## Table of Contents
 
-Project Name: 🌟 Feedback Analyzer 🌟
+Project Name: 🌟 Solution250 🌟
 
 -   Description
 -   Table of Contents
@@ -16,8 +16,6 @@ Project Name: 🌟 Feedback Analyzer 🌟
 -   Technologies Used
 -   Contributing
 -   License
--   Acknowledgements
--   Contact
 
 ## Features
 
@@ -65,18 +63,3 @@ Fork the repository.
 ## License
 
 The Feedback Analyzer project is licensed under the MIT License. You can find more information in the LICENSE file.
-
-## Acknowledgements
-
-We would like to express our gratitude to the following resources for their contributions:
-
-OpenAI for providing the GPT-3.5 model, which assisted in generating the README file.
-Our teachers and mentors for guiding us throughout the development process.
-
-## Contact
-
-For any inquiries or feedback regarding the Feedback Analyzer project, please contact:
-
-Project Lead: John Doe (john.doe@example.com)
-Developer: Jane Smith (jane.smith@example.com)
-Feel free to reach out with any questions or suggestions!
