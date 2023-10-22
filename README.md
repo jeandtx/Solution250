@@ -3,7 +3,7 @@
 ## Watch Our Presentation Video
 
 [![Watch Our Presentation Video](https://img.youtube.com/vi/PqscHXQ4oxM/0.jpg)](https://youtu.be/PqscHXQ4oxM)
-https://www.youtube.com/watch?v=PqscHXQ4oxM
+link : https://www.youtube.com/watch?v=PqscHXQ4oxM
 ## Description
 
 The Solution250 is a school project developed to provide a simple and efficient digital solution for businesses offering products or services with customer feedback. The traditional process of analyzing and drawing conclusions from scattered feedback can be time-consuming and resource-intensive. Leveraging machine learning algorithms, this project aims to extract summarized and quantified insights directly from raw data.
