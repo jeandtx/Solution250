@@ -2,7 +2,7 @@
 
 ## Watch Our Presentation Video
 
-https://www.youtube.com/watch?v=PqscHXQ4oxM
+[![Watch Our Presentation Video](https://img.youtube.com/vi/PqscHXQ4oxM/0.jpg)](https://www.youtube.com/watch?v=PqscHXQ4oxM)
 
 ## Description
 
